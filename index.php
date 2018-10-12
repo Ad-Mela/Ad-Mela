@@ -1,3 +1,8 @@
+<?php 
+
+session_start()
+
+?>
 <!doctype html>
  <head>
 	<!-- Required meta tags -->
@@ -124,9 +129,25 @@
 			<div class="nav-bar-link-box">
 				<a class="nav-bar-link" href="advertise.php">Post Ad</a>
 			</div>
-			<div class="nav-bar-link-box">
-				<a class="nav-bar-link" href="signin.php">Sign in</a>
-			</div>			     
+			<?php
+
+			if(!isset($_SESSION['id']))
+			{
+				?>
+				<div class="nav-bar-link-box">
+					<a class="nav-bar-link" href="signin.php">Sign in</a>
+				</div>	
+				<?php
+			}
+			else
+			{
+				?>
+				<div class="nav-bar-link-box">
+					<a class="nav-bar-link" href="signin.php"><?php echo $_SESSION['username']; ?></a>
+				</div>
+				<?php
+			}
+			?>		     
 		</div>
 	</nav>
 </div>

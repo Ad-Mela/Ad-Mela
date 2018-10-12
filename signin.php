@@ -1,3 +1,9 @@
+<?php
+
+if(!isset($_SESSION['id']))
+{
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -216,9 +222,9 @@
     </div>
 
 
-    <div class="outer-container container-fluid" style="padding-top:50px"> 
+    <div class="outer-container container-fluid" style="padding-top:50px" > 
         <div class="signin-box signin-box-background">
-            <form action="">
+             <form name="signup_form" method="Post" action="signin_system.php">
                 <div style="text-align:center">
                     <img style="border-radius:50%" class="dot" src="https://i.pinimg.com/originals/3b/7d/6f/3b7d6f60e2d450b899c322266fc6edfd.png">
                 </div>
@@ -245,3 +251,13 @@
 </body>
 </html>
 
+<?php
+
+}
+else
+{
+    header("LOCATION: user_profile.php");
+}
+
+
+?>

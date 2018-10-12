@@ -1,16 +1,3 @@
-<?php
-
-session_start();
-
-
-if(isset($_SESSION['id']))
-{
-
-include 'dbh.php';
-
-$userId=mysqli_real_escape_string($conn,$_SESSION['id']);
-?>
-
 <!doctype html>
 <html lang="en">
 	<head>
@@ -19,22 +6,17 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <!-- Bootstrap CSS -->
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
 
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
     <style>
     @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);
@@ -67,7 +49,7 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
         text-align: center; 
     }
 
-    /*.navbar {
+    .navbar {
         overflow: hidden;
         background-color: #1B9CFC;
         padding-bottom:5px;
@@ -86,9 +68,9 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
     }
     .nav-bar-link-box:hover{
         background-color: #B33771;
-    }*/
+    }
 
-    /*.header{
+    .header{
         text-align:center;
         border-bottom:1px solid;
         box-shadow: 2px 2px 18px #222f3e;
@@ -98,40 +80,6 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
         z-index:10;
         color:white;
     }
-
-    .header-boy{
-        overflow:hidden;
-    }*/
-
-    .header-right {
-        /*float: right;*/
-        position:absolute;
-        right:40px;
-    }
-
-    .header-up-dp{
-        width:40px;
-        height:40px;
-        border-radius: 50%;
-        margin-left:10px;
-    }
-    .header-ad-icon{
-        position:relative;
-        /*right:120px;*/
-        width:40px;
-        height:40px;
-        /*top:12px;*/
-        /*float:left;*/
-        margin-top:20px;
-        padding:5px;
-        padding-left:10px;
-    }
-    .header-notif-icon{
-        /*float:left;*/
-        padding:5px;
-    }
-
-
     .outer-container{
         padding:0px;
         width:100%;
@@ -160,7 +108,7 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
         border-top:1px solid grey;
         border-bottom:1px solid grey;*/
         
-        /*margin-top: 70px;*/
+        margin-top: 70px;
         background-color: #fff;
         box-shadow: 2px 2px 18px #222f3e;
 
@@ -171,34 +119,13 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
             position:fixed;
             width:330px;
             height:450px;
-            margin-top: 70px;
         }
     }
     @media only screen and (min-width: 600px) {
         .user-info-box{
-            /*position:fixed;*/
-            /*width:330px;*/
+            position:fixed;
+            width:330px;
             height:450px;
-        }        
-    }
-    @media only screen and (max-width: 600px) {
-        .header-up-dp{
-            width:60px;
-            height:60px;
-            border-radius: 50%;
-            margin:0 auto;
-            display:block;
-        }
-        .user-info-box{
-            /*position: relative;*/
-        }
-        .header a {
-            float: none;
-            display: block;
-            text-align: left;
-        }
-        .header-right {
-            float: none;
         }
     }
 
@@ -231,7 +158,6 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
         padding-bottom:15px;
     }
 
-
     body{
     	/*background-color:#DAE0E5;*/
     }
@@ -241,12 +167,12 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
 	<title>User Profile</title>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<!--     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
-	<!-- <div class="container-fluid header">
+	<div class="container-fluid header">
         <a href="#"><h1 style="padding-top:10px;color:white">Ad-Mela</h1></a>
 
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -267,51 +193,31 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
         </nav>
 
 
-    </div> -->
+    </div>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="index.php">AdMela</a>
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse header-boy" id="navbarNavAltMarkup" style="">
-            <div class="navbar-nav" style="float:left">
-                <a class="nav-item nav-link " href="categories.php">Categories <!-- <span class="sr-only">(current)</span> --></a>
-                <!-- <a class="nav-item nav-link" href="#"></a>
-                <a class="nav-item nav-link" href="#">Pricing</a> -->
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="#">Features</a>
+                <a class="nav-item nav-link" href="#">Pricing</a>
             </div>
-
-            <div class="header-right">
-                <a href="advertise.php" class="header-notif-icon">
-                    <i style="font-size:30px;color:white" class="far fa-bell"></i>
-                </a>
-                <a href="advertise.php" class="header-ad-icon">
-                    <i style="font-size:30px;color:white" class="fas fa-upload"></i>
-                </a>
-
-                <a href="user_profile.php" class="header-dp-icon">
-                    <img src="<?php echo $_SESSION['profilePicLocation']; ?>" class="header-up-dp">
-                </a>
-            </div>
-            
         </div>
-    </nav>
+    </nav> -->
 
-	<div class="outer-container container-fluid" style="padding-top:0px"> 
+	<div class="outer-container container-fluid" style="padding-top:50px"> 
 		<div class="container">
 			<div class="row">
-				<div class="col-md-4 col-sm-12 user-info-outer-div">					
+				<div class="col-md-4 user-info-outer-div">					
 					<div class="user-info-box">
-						<img src="<?php echo $_SESSION['profilePicLocation']; ?>" style="width:100%;height:200px;border-top-left-radius: 15px;border-top-right-radius: 15px">
-
-                        <div class="container">
-                            <div class="row" style="margin-top:5px">
-                                <h2 style="text-align:center;width:100%"><?php echo $_SESSION['username']; ?></h2>
-                            </div>
-                        </div>
+						<img src="http://car-modification.us/wp-content/uploads/2018/08/elegant-lamborghini-wallpaper-download-of-lamborghini-wallpaper-download.jpg" style="width:100%;height:200px;border-top-left-radius: 15px;border-top-right-radius: 15px">
 					</div>
 				</div>
-				<div class="col-md-8 col-sm-12 tabs-outer-div">
+				<div class="col-md-8 tabs-outer-div">
 					<div class="tabs-box">
 						<ul class="nav nav-tabs" role="tablist" style="text-align:center">
                             <li class="nav-item" style="width:33%">
@@ -326,24 +232,9 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
                         </ul>
                         
                         <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane active in" id="MyAds">
+                            <div role="tabpanel" class="tab-pane fade in active" id="MyAds">
                                 <div class="container">
 
-                                    <?php
-
-                                    $sql="SELECT websiteId,imgdst1,imgdst2,imgdst3 FROM ads WHERE websiteOwnerId='$userId'";
-                                    $result=mysqli_query($conn,$sql);
-
-                                    while($row=mysqli_fetch_assoc($result))
-                                    {
-
-                                    $websiteId=$row['websiteId'];
-
-                                    $sql1="SELECT websiteName,pageviews,pg_lastmonth FROM websites WHERE wid='$websiteId'";
-                                    $result1=mysqli_query($conn,$sql1);
-                                    $row1=mysqli_fetch_assoc($result1);
-
-                                    ?>
                                     <div class="up-ad">
                                         <div class="up-ad-img-div">
                                             <div id="demoa1" class="carousel slide" data-ride="carousel">
@@ -359,13 +250,13 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
                                                 <div class="carousel-inner">
 
                                                     <div class="carousel-item active">
-                                                      <img style="width:100%;height:400px" src="<?php echo $row['imgdst1']; ?>" width="1100" height="500">
+                                                      <img style="width:100%;height:400px" src="http://natbg.com/wp-content/uploads/2016/09/other-autumn-park-serenity-colors-walk-trees-fall-nature-rest-beautiful-foliage-bench-season-leaves-full-hd-wallpaper.jpg" alt="Los Angeles" width="1100" height="500">
                                                     </div>
                                                     <div class="carousel-item">
-                                                      <img style="width:100%;height:400px" src="<?php echo $row['imgdst2']; ?>" alt="Chicago" width="1100" height="500">
+                                                      <img style="width:100%;height:400px" src="https://cn.pling.com/img/d/4/2/8/79779577f314302bbd285e2f858754ea0f04.jpg" alt="Chicago" width="1100" height="500">
                                                     </div>
                                                     <div class="carousel-item">
-                                                      <img style="width:100%;height:400px" src="<?php echo $row['imgdst3']; ?>" alt="New York" width="1100" height="500">
+                                                      <img style="width:100%;height:400px" src="http://www.intrawallpaper.com/static/images/Golden-Gate-Bridge-HD-Wallpapers-WideScreen2.jpg" alt="New York" width="1100" height="500">
                                                     </div>
                                                 </div>
                                                   
@@ -380,29 +271,24 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
                                         </div>
                                         <a href="adlisting.php">
                                         <div class="up-ad-info-div">
-                                            <p style="margin:10px;color:black;font-size:20px;text-align:center"><?php echo $row1['websiteName']; ?></p>
-                                            <p style="margin:10px;color:black;text-align:center">Total Page Views: <?php echo $row1['pageviews']; ?> | Page Views Last Month: <?php echo $row1['pg_lastmonth']; ?></p>
+                                            <p style="margin:10px;color:black;font-size:20px;text-align:center">WEBSITE 1</p>
+                                            <p style="margin:10px;color:black;text-align:center">------INFO------</p>
                                         </div>
                                         </a> 
                                     </div>
 
-                                    <?php
-
-                                    }
-
-
-                                    ?>
-
-                                    <!-- <div class="up-ad">
+                                    <div class="up-ad">
                                         <div class="up-ad-img-div">
                                             <div id="demoa2" class="carousel slide" data-ride="carousel">
 
+                                                <!-- Indicators -->
                                                 <ul class="carousel-indicators">
                                                     <li data-target="#demoa2" data-slide-to="0" class="active"></li>
                                                     <li data-target="#demoa2" data-slide-to="1"></li>
                                                     <li data-target="#demoa2" data-slide-to="2"></li>
                                                 </ul>
                                                   
+                                                <!-- The slideshow -->
                                                 <div class="carousel-inner">
 
                                                     <div class="carousel-item active">
@@ -416,6 +302,7 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
                                                     </div>
                                                 </div>
                                                   
+                                                <!-- Left and right controls -->
                                                 <a class="carousel-control-prev" href="#demoa2" data-slide="prev">
                                                     <span class="carousel-control-prev-icon"></span>
                                                 </a>
@@ -430,7 +317,7 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
                                             <p style="margin:10px;color:black;text-align:center">------INFO------</p>
                                         </div>
                                         </a> 
-                                    </div> -->
+                                    </div>
 
 
                                 </div>
@@ -443,16 +330,18 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
                                         <div class="up-ad-img-div">
                                             <div id="demof1" class="carousel slide" data-ride="carousel">
 
+                                                <!-- Indicators -->
                                                 <ul class="carousel-indicators">
                                                     <li data-target="#demof1" data-slide-to="0" class="active"></li>
                                                     <li data-target="#demof1" data-slide-to="1"></li>
                                                     <li data-target="#demof1" data-slide-to="2"></li>
                                                 </ul>
-
+                                                  
+                                                <!-- The slideshow -->
                                                 <div class="carousel-inner">
 
                                                     <div class="carousel-item active">
-                                                      <img style="width:100%;height:400px" src="https://www.travelcaffeine.com/wp-content/uploads/2018/07/fushimi-inari-shrine-sunburst-kyoto-japan-854.jpg" alt="Los Angeles" width="1100" height="500">
+                                                      <img style="width:100%;height:400px" src="https://besthomedecor.bid/data/out/7/wallpaper2you_157387.jpg" alt="Los Angeles" width="1100" height="500">
                                                     </div>
                                                     <div class="carousel-item">
                                                       <img style="width:100%;height:400px" src="https://i.ytimg.com/vi/CNgiXHrHk7A/maxresdefault.jpg" alt="Chicago" width="1100" height="500">
@@ -461,7 +350,8 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
                                                       <img style="width:100%;height:400px" src="https://i.pinimg.com/originals/47/4c/19/474c19219d02e17024c5e9ea6c8a173d.jpg" alt="New York" width="1100" height="500">
                                                     </div>
                                                 </div>
-
+                                                  
+                                                <!-- Left and right controls -->
                                                 <a class="carousel-control-prev" href="#demof1" data-slide="prev">
                                                     <span class="carousel-control-prev-icon"></span>
                                                 </a>
@@ -490,13 +380,3 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
 	</div>
 </body>
 </html>
-
-<?php
-
-}
-else
-{
-    header("LOCATION: signup.php");
-}
-
-?>

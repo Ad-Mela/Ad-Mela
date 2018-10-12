@@ -1,3 +1,11 @@
+<?php
+
+session_start();
+
+if(!isset($_SESSION['id']))
+{
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +36,7 @@
         font-family: 'Open Sans', sans-serif;
     }
     body{
-        background:url('http://wallpapersexpert.com/data/out/9/3336574-scenery-wallpapers.jpg');
+        background:url('signup_back.jpg');
         /*background:url('http://www.qygjxz.com/data/out/103/3952290-hd-background-images.jpg');*/
         background-size: 100% 100vh;
         background-repeat: no-repeat;
@@ -308,3 +316,13 @@
 </body>
 </html>
 
+<?php
+
+}
+else
+{
+    header("LOCATION: user_profile.php");
+}
+
+
+?>
