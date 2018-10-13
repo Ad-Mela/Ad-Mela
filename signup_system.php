@@ -30,12 +30,12 @@ if(isset($_POST['submit']))
 			// $query = mysqli_query($conn,"insert into users(username,fullname,email,pwd,profilePicLocation) values ('$username', '$fullname', '$email', '$hash','user_dp/default.jpg')");
 			// echo $query;
 
-			echo $fullname.','.$email.','.$username.','.$password.','.$hash;
+			// echo $fullname.','.$email.','.$username.','.$password.','.$hash;
 
 			$sql2="INSERT INTO users (username,fullname,email,pwd,profilePicLocation) VALUES ('$username','$fullname','$email','$hash','user_dp/default.jpg')";
 			$result2=mysqli_query($conn,$sql2);
 
-			echo "Succesfuel";
+			// echo "Succesfuel";
 
 			session_start();
 
@@ -50,9 +50,9 @@ if(isset($_POST['submit']))
 			$_SESSION['fullname']=$fullname;
 			$_SESSION['profilePicLocation']=$row3['profilePicLocation'];
 
-			echo '<br>'.$_SESSION['id'].','.$_SESSION['username'].','.$_SESSION['fullname'].','.$_SESSION['profilePicLocation'];
+			// echo '<br>'.$_SESSION['id'].','.$_SESSION['username'].','.$_SESSION['fullname'].','.$_SESSION['profilePicLocation'];
 
-			// header("LOCATION: user_profile.php");
+			header("LOCATION: user_profile.php");
 		}
 	}
 ?>
