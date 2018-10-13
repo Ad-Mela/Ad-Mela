@@ -8,8 +8,6 @@
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
 	<style type="text/css">
 	@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);
 	a,a:hover{
@@ -127,25 +125,8 @@
     	border: 1px solid #ccc;
     }
 
-    .w3-modal{
-    	margin-top: 10px;
-    }
-
     input[type=submit] {
 	    padding:10px 35%; 
-	    background:#0fb9b1; 
-	    border:0 none;
-	    color:white;
-	    margin-top:10px;
-	    cursor:pointer;
-	    -webkit-border-radius: 5px;
-	    border-radius: 5px; 
-	    margin-left:auto;
-	    margin-right:auto;
-	}
-
-	.btn1{
-		padding:10px 35%; 
 	    background:#0fb9b1; 
 	    border:0 none;
 	    color:white;
@@ -288,42 +269,16 @@
 					<input style="width: 100%;margin-bottom: 6px;float:left;border-radius: 5px;padding: 5px;border: 1px solid #ccc;" name="cost" type="number" placeholder="in $/day">      
 				</div>
 				
-				<button onclick="document.getElementById('id01').style.display='block'" class="btn1">Upload Images</button>
-
-					<div class="row">
-						<input class="submit" name="submit" type="submit" value="List Advertise" onClick="validateForm();" >
-					</div>
-					<br>
-				</div>	
-					
+				<div class="row">
+					<input class="submit" name="submit" type="submit" value="List Advertise" onClick="validateForm();" >
+				</div>
+				<br>
+			</div>			
 		</form>	
 	</div>
 	<br><br>
 </div>  
 	
 	
-
-	<div id="id01" class="w3-modal">
-    <div class="w3-modal-content">
-      <div class="w3-container">
-        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-        
-        <div class="row">
-        	<p style="width: 100%;text-align: center">Upload 3 Images</p>
-        </div>
-        <div class="row">
-			<div class="col-md-4">
-				<input type="file" name="fileToUpload1" id="fileToUpload">
-			</div>
-			<div class="col-md-4">
-				<input type="file" name="fileToUpload2" id="fileToUpload">
-			</div>
-			<div class="col-md-4">
-				<input type="file" name="fileToUpload3" id="fileToUpload">
-			</div>
-        </div>
-      </div>
-    </div>
-  </div>
 	</body>
 </html>

@@ -8,6 +8,8 @@
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 	<style type="text/css">
 	@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);
 	a,a:hover{
@@ -16,10 +18,9 @@
 	*{
 		font-family: 'Open Sans', sans-serif;
 	}
-	.navbar {
+	/*.navbar {
 		overflow: hidden;
 		background-color: #1B9CFC;
-		/*font-family: Arial;*/
 		padding-bottom:5px;
 	}
 	
@@ -47,8 +48,36 @@
 	}
 	.nav-bar-link-box:hover{
 		background-color: #B33771;
-	}
+	}*/
 	
+	.header-right {
+        /*float: right;*/
+        position:absolute;
+        right:40px;
+    }
+
+    .header-up-dp{
+        width:40px;
+        height:40px;
+        border-radius: 50%;
+        margin-left:10px;
+    }
+    .header-ad-icon{
+        position:relative;
+        /*right:120px;*/
+        width:40px;
+        height:40px;
+        /*top:12px;*/
+        /*float:left;*/
+        margin-top:20px;
+        padding:5px;
+        padding-left:10px;
+    }
+    .header-notif-icon{
+        /*float:left;*/
+        padding:5px;
+    }
+
 	.outer-container{
         padding:0px;
         width:100%;
@@ -125,8 +154,25 @@
     	border: 1px solid #ccc;
     }
 
+    .w3-modal{
+    	margin-top: 10px;
+    }
+
     input[type=submit] {
 	    padding:10px 35%; 
+	    background:#0fb9b1; 
+	    border:0 none;
+	    color:white;
+	    margin-top:10px;
+	    cursor:pointer;
+	    -webkit-border-radius: 5px;
+	    border-radius: 5px; 
+	    margin-left:auto;
+	    margin-right:auto;
+	}
+
+	.btn1{
+		padding:10px 35%; 
 	    background:#0fb9b1; 
 	    border:0 none;
 	    color:white;
@@ -195,7 +241,7 @@
 	
 <body>
 	
-<div class="container-fluid header">
+<!-- <div class="container-fluid header">
 	<a href="#"><h1 style="padding-top:10px;color:white">Ad-Mela</h1></a>
 
 	<nav class="navbar navbar-default navbar-fixed-top">
@@ -214,9 +260,36 @@
 			</div>           
 		</div>
 	</nav>
-</div>
+</div> -->
 
-<div class="outer-container container-fluid" style="padding-top:50px"> 
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="index.php">AdMela</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse header-boy" id="navbarNavAltMarkup">
+        <div class="navbar-nav" style="float:left">
+            <a class="nav-item nav-link " href="categories.php">Categories <!-- <span class="sr-only">(current)</span> --></a>
+            <!-- <a class="nav-item nav-link" href="#"></a>-->
+            <a class="nav-item nav-link" href="logout.php">Log Out</a> 
+        </div>
+        <!-- <a href="logout.php" class="nav-item nav-link" style="color:white">Log Out</a> -->
+        <div class="header-right">
+            <a href="advertise.php" class="header-notif-icon">
+                <i style="font-size:30px;color:white" class="far fa-bell"></i>
+            </a>
+            <a href="advertise.php" class="header-ad-icon">
+                <i style="font-size:30px;color:white" class="fas fa-upload"></i>
+            </a>
+            <a href="user_profile.php" class="header-dp-icon">
+                <img src="<?php echo $_SESSION['profilePicLocation']; ?>" class="header-up-dp">
+            </a>
+        </div>
+        
+    </div>
+</nav>
+
+<div class="outer-container container-fluid" style="padding-top:0px"> 
 	<div class="signin-box signin-box-background">
 		<form name="ad_listing_form" method="post">
 			<div class="container">
@@ -269,16 +342,45 @@
 					<input style="width: 100%;margin-bottom: 6px;float:left;border-radius: 5px;padding: 5px;border: 1px solid #ccc;" name="cost" type="number" placeholder="in $/day">      
 				</div>
 				
+
+				<div id="id01" class="w3-modal">
+				    <div class="w3-modal-content">
+				      	<div class="w3-container">
+					        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+					        
+					        <div class="row">
+					        	<p style="width: 100%;text-align: center">Upload 3 Images</p>
+					        </div>
+					        <div class="row">
+								<div class="col-md-4">
+									<input type="file" name="fileToUpload1" id="fileToUpload">
+								</div>
+								<div class="col-md-4">
+									<input type="file" name="fileToUpload2" id="fileToUpload">
+								</div>
+								<div class="col-md-4">
+									<input type="file" name="fileToUpload3" id="fileToUpload">
+								</div>
+					        </div>
+				     	</div>
+				    </div>
+			  	</div>
+
+				<a onclick="document.getElementById('id01').style.display='block'" class="btn1">Upload Images</a>
+
 				<div class="row">
 					<input class="submit" name="submit" type="submit" value="List Advertise" onClick="validateForm();" >
 				</div>
 				<br>
-			</div>			
+			</div>	
+					
 		</form>	
 	</div>
 	<br><br>
 </div>  
 	
+	
+
 	
 	</body>
 </html>
