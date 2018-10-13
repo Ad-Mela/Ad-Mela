@@ -28,6 +28,7 @@ if(isset($_POST['submit']))
 		{
 			
 			$query = mysqli_query($conn,"insert into users(username,fullname,email,pwd,profilePicLocation) values ('$username', '$fullname', '$email', '$hash','user_dp/default.jpg')");
+			echo $query;
 			echo "Succesfuel";
 
 			session_start();
