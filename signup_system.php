@@ -27,15 +27,21 @@ if(isset($_POST['submit']))
 		else
 		{
 			
-			$query = mysqli_query($conn,"insert into users(username,fullname,email,pwd,profilePicLocation) values ('$username', '$fullname', '$email', '$hash','user_dp/default.jpg')");
-			echo $query;
+			// $query = mysqli_query($conn,"insert into users(username,fullname,email,pwd,profilePicLocation) values ('$username', '$fullname', '$email', '$hash','user_dp/default.jpg')");
+			// echo $query;
+
+			echo $fullname.','.$email.','.$username.','.$password.','.$hash;
+
+			$sql2="INSERT INTO users (username,fullname,email,pwd,profilePicLocation) VALUES ('$username','$fullname','$email','$hash','user_dp/default.jpg')";
+			$result2=mysqli_query($conn,$sql2);
+
 			echo "Succesfuel";
 
 			session_start();
 
 			$id = $conn->insert_id;
 
-			$sql3="SELECT profilePicLocation FROM users WHERE id='$id'";
+			$sql3="SELECT profilePicLocation FROM users WHERE uid='$id'";
 			$result3=mysqli_query($conn,$sql3);
 			$row3=mysqli_fetch_assoc($result3);
 
@@ -44,7 +50,7 @@ if(isset($_POST['submit']))
 			$_SESSION['fullname']=$fullname;
 			$_SESSION['profilePicLocation']=$row3['profilePicLocation'];
 
-			// echo $_SESSION['id'].','.$_SESSION['username'].','.$_SESSION['fullname'];
+			echo '<br>'.$_SESSION['id'].','.$_SESSION['username'].','.$_SESSION['fullname'].','.$_SESSION['profilePicLocation'];
 
 			// header("LOCATION: user_profile.php");
 		}
