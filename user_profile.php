@@ -280,7 +280,7 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
                 <!-- <a class="nav-item nav-link" href="#"></a>
                 <a class="nav-item nav-link" href="#">Pricing</a> -->
             </div>
-
+            <a href="logout.php" class="nav-item nav-link" style="color:white">Log Out</a>
             <div class="header-right">
                 <a href="advertise.php" class="header-notif-icon">
                     <i style="font-size:30px;color:white" class="far fa-bell"></i>

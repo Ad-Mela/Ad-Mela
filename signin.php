@@ -233,7 +233,7 @@ if(!isset($_SESSION['id']))
 
                     <input type="password" class="signinbox-input-background" placeholder="Password" name="psw" required>
                         
-                    <button type="submit" class="login-button">Login</button>
+                    <button type="submit" name="login-button" class="login-button">Login</button>
                     <label style="color:#fff">
                         <input type="checkbox" checked="checked" name="remember"> Remember me
                     </label>

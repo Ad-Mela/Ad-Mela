@@ -28,7 +28,7 @@ if(isset($_POST['submit']))
 		{
 			
 			$query = mysqli_query($conn,"insert into users(username,fullname,email,pwd,profilePicLocation) values ('$username', '$fullname', '$email', '$hash','user_dp/default.jpg')");
-			// echo "Succesfuel";
+			echo "Succesfuel";
 
 			session_start();
 
@@ -45,7 +45,7 @@ if(isset($_POST['submit']))
 
 			// echo $_SESSION['id'].','.$_SESSION['username'].','.$_SESSION['fullname'];
 
-			header("LOCATION: user_profile.php");
+			// header("LOCATION: user_profile.php");
 		}
 	}
 ?>
