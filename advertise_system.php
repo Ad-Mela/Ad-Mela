@@ -73,7 +73,7 @@ $result=mysqli_query($conn,$sql);
 
 $ad_Id = $conn->insert_id;	
 
-$ad_Id=2;
+// $ad_Id=2;
 
 $file_name=$_FILES['fileToUpload1']['name'];//gets the name of the meme(that is the name that was there during uploading the meme)
 $ext = pathinfo($file_name, PATHINFO_EXTENSION);//this amazing function gets the extension of the image(meme) file e.g. "jpg","png" without the dot before the extension i.e., ".jpg",".png"..this dot has to be added later on
@@ -116,6 +116,8 @@ if($ext == "jpg" || $ext == "png" || $ext == "jpeg" || $ext == "gif" )
 
 			$sql5="UPDATE ads SET imgdst1='$filepath1',imgdst2='$filepath2',imgdst3='$filepath3' WHERE aid='$ad_Id'";
 			$result5=mysqli_query($conn,$sql5);
+
+			echo $ad_Id;
 		}
 		else
 		{

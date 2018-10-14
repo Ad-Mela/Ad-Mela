@@ -421,6 +421,8 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
 				</div>
 				<br>
 			</div>	
+
+			<p id="error" style="color:red;text-align:center;width:100%;font-size:20px"></p>
 					
 		</form>	
 	</div>

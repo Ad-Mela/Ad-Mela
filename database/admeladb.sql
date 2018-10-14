@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2018 at 08:40 AM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 7.1.7
+-- Generation Time: Oct 14, 2018 at 04:02 PM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 7.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `admela`
+-- Database: `admeladb`
 --
 
 -- --------------------------------------------------------
@@ -43,6 +41,13 @@ CREATE TABLE `ads` (
   `imgdst3` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `ads`
+--
+
+INSERT INTO `ads` (`aid`, `websiteId`, `websiteOwnerId`, `width`, `height`, `type`, `status`, `cost`, `favourites`, `imgdst1`, `imgdst2`, `imgdst3`) VALUES
+(1, 1, 9, 500, 500, 1, 0, 5, 0, 'ads/1_1.jpg', 'ads/1_2.jpg', 'ads/1_3.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -51,9 +56,19 @@ CREATE TABLE `ads` (
 
 CREATE TABLE `ad_type` (
   `tid` int(11) NOT NULL,
-  `adtype` int(11) NOT NULL,
+  `adtype` varchar(50) NOT NULL,
   `totalWebsites` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ad_type`
+--
+
+INSERT INTO `ad_type` (`tid`, `adtype`, `totalWebsites`) VALUES
+(1, 'Banner', 1),
+(2, 'Pop-Up', 0),
+(3, 'Video', 0),
+(4, 'Referral Link', 0);
 
 -- --------------------------------------------------------
 
@@ -78,20 +93,22 @@ CREATE TABLE `users` (
   `username` varchar(15) NOT NULL,
   `fullname` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `pwd` varchar(256) NOT NULL
+  `pwd` varchar(256) NOT NULL,
+  `profilePicLocation` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`uid`, `username`, `fullname`, `email`, `pwd`) VALUES
-(1, 'amit99', 'Amit Bhujbal', 'amit.bhujbal@somaiya.edu', 'amitamit'),
-(2, 'sidhero', 'Siddharth Umachandar', 'sid9805@somaiya.edu', 'sidsid'),
-(3, 'SHARVAI', 'Sharvai Patil', 'sharvai.p@somaiya.edu', 'sharvaisharvai'),
-(4, 'Joker6996', 'Shivam Mahajan', 'spmshivam@gmail.com', 'shivamspm'),
-(5, 'MSS', 'Mihir Shah', 'mihir.shah@gmail.com', 'mihirshah'),
-(8, 'shivamkul', 'shivam mahajan', 'shivam@gmail.com', '$2y$10$Yml89LST2G/aiw5V17FtuO.CdkAuFThXG7S66LFPoG26mqPEhOtDK');
+INSERT INTO `users` (`uid`, `username`, `fullname`, `email`, `pwd`, `profilePicLocation`) VALUES
+(1, 'amit99', 'Amit Bhujbal', 'amit.bhujbal@somaiya.edu', 'amitamit', ''),
+(2, 'sidhero', 'Siddharth Umachandar', 'sid9805@somaiya.edu', 'sidsid', ''),
+(3, 'SHARVAI', 'Sharvai Patil', 'sharvai.p@somaiya.edu', 'sharvaisharvai', ''),
+(4, 'Joker6996', 'Shivam Mahajan', 'spmshivam@gmail.com', 'shivamspm', ''),
+(5, 'MSS', 'Mihir Shah', 'mihir.shah@gmail.com', 'mihirshah', ''),
+(8, 'shivamkul', 'shivam mahajan', 'shivam@gmail.com', '$2y$10$Yml89LST2G/aiw5V17FtuO.CdkAuFThXG7S66LFPoG26mqPEhOtDK', ''),
+(9, 'RDMaverick', 'Rutwij Daptardar', 'rutwij.d@somaiya.edu', '$2y$10$LuHBeLzCMY2KETtzaaU5oerUtMcc4Zg4B2nmF88ydM8lw.Ay.wF7q', 'user_dp/default.jpg');
 
 -- --------------------------------------------------------
 
@@ -102,11 +119,19 @@ INSERT INTO `users` (`uid`, `username`, `fullname`, `email`, `pwd`) VALUES
 CREATE TABLE `websites` (
   `wid` int(11) NOT NULL,
   `websiteName` varchar(50) NOT NULL,
+  `websiteDomain` varchar(50) NOT NULL,
   `ownerId` int(11) NOT NULL,
   `websiteType` int(11) NOT NULL,
   `pageviews` int(11) NOT NULL,
   `pg_lastmonth` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `websites`
+--
+
+INSERT INTO `websites` (`wid`, `websiteName`, `websiteDomain`, `ownerId`, `websiteType`, `pageviews`, `pg_lastmonth`) VALUES
+(1, 'MEAGL', 'www.meagl.com', 9, 3, 17000, 1400);
 
 -- --------------------------------------------------------
 
@@ -116,9 +141,22 @@ CREATE TABLE `websites` (
 
 CREATE TABLE `website_type` (
   `wtid` int(11) NOT NULL,
-  `wbtype` int(11) NOT NULL,
+  `wbtype` varchar(50) NOT NULL,
   `totalWebsites` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `website_type`
+--
+
+INSERT INTO `website_type` (`wtid`, `wbtype`, `totalWebsites`) VALUES
+(1, 'Social', 0),
+(2, 'Educational', 0),
+(3, 'Entertainment', 1),
+(4, 'Utility', 0),
+(5, 'Community', 0),
+(6, 'News', 0),
+(7, 'Gaming', 0);
 
 --
 -- Indexes for dumped tables
@@ -175,12 +213,12 @@ ALTER TABLE `website_type`
 -- AUTO_INCREMENT for table `ads`
 --
 ALTER TABLE `ads`
-  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `ad_type`
 --
 ALTER TABLE `ad_type`
-  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `favourites`
 --
@@ -190,17 +228,17 @@ ALTER TABLE `favourites`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `websites`
 --
 ALTER TABLE `websites`
-  MODIFY `wid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `wid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `website_type`
 --
 ALTER TABLE `website_type`
-  MODIFY `wtid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `wtid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- Constraints for dumped tables
 --
@@ -226,7 +264,6 @@ ALTER TABLE `favourites`
 ALTER TABLE `websites`
   ADD CONSTRAINT `websites_ibfk_1` FOREIGN KEY (`ownerId`) REFERENCES `users` (`uid`) ON UPDATE CASCADE,
   ADD CONSTRAINT `websites_ibfk_2` FOREIGN KEY (`websiteType`) REFERENCES `website_type` (`wtid`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

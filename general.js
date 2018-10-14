@@ -44,19 +44,23 @@ $(document).ready(function(){
             success: function (response) 
             {
                 // alert("ikde ala re!");
-                alert(response);   
+                // alert(response);   
                 
                 if(response.trim()=='extension error 1')
                 {
-
+                    document.getElementById("error").innerHTML="Wrong extension of the first file uploaded";
                 }
                 else if(response.trim()=='extension error 2')
                 {
-
+                    document.getElementById("error").innerHTML="Wrong extension of the second file uploaded";
                 }
                 else if(response.trim()=='extension error 3')
                 {
-
+                    document.getElementById("error").innerHTML="Wrong extension of the third file uploaded";
+                }
+                else
+                {
+                    window.location.href="adlisting.php?ad_Id="+response.trim();
                 }
                 // $(".tip_money_button").removeClass('disabled');
                 // window.location.href=response;
