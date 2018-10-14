@@ -334,42 +334,45 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
                                     $result1=mysqli_query($conn,$sql1);
                                     $row1=mysqli_fetch_assoc($result1);
 
+                                    $sql2="SELECT aid FROM ads WHERE websiteId='$websiteId'";
+                                    $result2=mysqli_query($conn,$sql2);
+                                    $row2=mysqli_fetch_assoc($result2);
+                                    $ad_Id=$row2['aid'];
                                     ?>
                                     <div class="up-ad">
                                         <div class="up-ad-img-div">
-                                            <div id="demoa1" class="carousel slide" data-ride="carousel">
+                                            <div id="demoa<?php echo $websiteId; ?>" class="carousel slide" data-ride="carousel">
 
                                                 <!-- Indicators -->
                                                 <ul class="carousel-indicators">
-                                                    <li data-target="#demoa1" data-slide-to="0" class="active"></li>
-                                                    <li data-target="#demoa1" data-slide-to="1"></li>
-                                                    <li data-target="#demoa1" data-slide-to="2"></li>
+                                                    <li data-target="#demoa<?php echo $websiteId; ?>" data-slide-to="0" class="active"></li>
+                                                    <li data-target="#demoa<?php echo $websiteId; ?>" data-slide-to="1"></li>
+                                                    <li data-target="#demoa<?php echo $websiteId; ?>" data-slide-to="2"></li>
                                                 </ul>
                                                   
                                                 <!-- The slideshow -->
                                                 <div class="carousel-inner">
-
                                                     <div class="carousel-item active">
-                                                      <img style="width:100%;height:400px" src="<?php echo $row['imgdst1']; ?>" width="1100" height="500">
+                                                        <img style="width:100%;height:400px" src="<?php echo $row['imgdst1']; ?>" width="1100" height="500">
                                                     </div>
                                                     <div class="carousel-item">
-                                                      <img style="width:100%;height:400px" src="<?php echo $row['imgdst2']; ?>" alt="Chicago" width="1100" height="500">
+                                                        <img style="width:100%;height:400px" src="<?php echo $row['imgdst2']; ?>" width="1100" height="500">
                                                     </div>
                                                     <div class="carousel-item">
-                                                      <img style="width:100%;height:400px" src="<?php echo $row['imgdst3']; ?>" alt="New York" width="1100" height="500">
+                                                        <img style="width:100%;height:400px" src="<?php echo $row['imgdst3']; ?>" width="1100" height="500">
                                                     </div>
                                                 </div>
                                                   
                                                 <!-- Left and right controls -->
-                                                <a class="carousel-control-prev" href="#demoa1" data-slide="prev">
+                                                <a class="carousel-control-prev" href="#demoa<?php echo $websiteId; ?>" data-slide="prev">
                                                     <span class="carousel-control-prev-icon"></span>
                                                 </a>
-                                                <a class="carousel-control-next" href="#demoa1" data-slide="next">
+                                                <a class="carousel-control-next" href="#demoa<?php echo $websiteId; ?>" data-slide="next">
                                                     <span class="carousel-control-next-icon"></span>
                                                 </a>
                                             </div>
                                         </div>
-                                        <a href="adlisting.php">
+                                        <a href="adlisting.php?ad_Id=<?php echo $ad_Id; ?>">
                                         <div class="up-ad-info-div">
                                             <p style="margin:10px;color:black;font-size:20px;text-align:center"><?php echo $row1['websiteName']; ?></p>
                                             <p style="margin:10px;color:black;text-align:center">Total Page Views: <?php echo $row1['pageviews']; ?> | Page Views Last Month: <?php echo $row1['pg_lastmonth']; ?></p>
