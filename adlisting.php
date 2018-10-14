@@ -1,20 +1,27 @@
+<?php
+
+session_start();
+
+include 'dbh.php';
+
+$ad_Id=$_GET['ad_Id'];
+
+?>
+
 <!doctype html>
- <head>
-	<!-- Required meta tags -->
+<head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<!-- Bootstrap CSS -->
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-	<!-- Font Awesome CSS -->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+   
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <!-- <script src="general.js"></script> -->
 	
 	<style type="text/css">
 	@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);
@@ -24,23 +31,40 @@
 	*{
 		font-family: 'Open Sans', sans-serif;
 	}
-	.navbar {
-		overflow: hidden;
-		background-color: #1B9CFC;
-		/*font-family: Arial;*/
-		padding-bottom:5px;
-	}
-	.nav-bar-link{
-		color:#fff;
-		text-align:center;
-	}
-	.nav-bar-link:hover{
-		color:#fff;
-	}
+	
+	.header-right {
+        /*float: right;*/
+        position:absolute;
+        right:40px;
+    }
+
+    .header-up-dp{
+        width:40px;
+        height:40px;
+        border-radius: 50%;
+        margin-left:10px;
+    }
+    .header-ad-icon{
+        position:relative;
+        /*right:120px;*/
+        width:40px;
+        height:40px;
+        /*top:12px;*/
+        /*float:left;*/
+        margin-top:20px;
+        padding:5px;
+        padding-left:10px;
+    }
+    .header-notif-icon{
+        /*float:left;*/
+        padding:5px;
+    }
+
 	.outer-container{
 		padding:0px;
 		width:100%;
-		top:97px;
+		/*top:97px;*/
+		margin-top:50px;
 		position:relative;
 	}
 	.info-box-element{
@@ -143,11 +167,7 @@
 	}
 	</style>
 	<title>Ad Listing</title>
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
 </head>
 <body>
 <!--   
@@ -160,7 +180,7 @@
 	</div>	
 </nav> -->
 
-<div class="container-fluid header">
+<!-- <div class="container-fluid header">
 	<a href="#"><h1 style="padding-top:10px;color:white">Ad-Mela</h1></a>
 
 	<nav class="navbar navbar-default navbar-fixed-top">
@@ -179,15 +199,53 @@
 			</div>			     
 		</div>
 	</nav>
-</div>
+</div> -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+	<a class="navbar-brand" href="index.php">AdMela</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse header-boy" id="navbarNavAltMarkup" style="">
+		<div class="navbar-nav" style="float:left">
+			<a class="nav-item nav-link " href="categories.php">Categories <!-- <span class="sr-only">(current)</span> --></a>
+			<!-- <a class="nav-item nav-link" href="#"></a>
+			<a class="nav-item nav-link" href="#">Pricing</a> -->
+		</div>
+		<a href="logout.php" class="nav-item nav-link" style="color:white">Log Out</a>
+		<div class="header-right">
+			<a href="advertise.php" class="header-notif-icon">
+				<i style="font-size:30px;color:white" class="far fa-bell"></i>
+			</a>
+			<a href="advertise.php" class="header-ad-icon">
+				<i style="font-size:30px;color:white" class="fas fa-upload"></i>
+			</a>
+			<a href="user_profile.php" class="header-dp-icon">
+				<img src="<?php echo $_SESSION['profilePicLocation']; ?>" class="header-up-dp">
+			</a>
+		</div>
+		
+	</div>
+</nav>
 
 
 <div class="outer-container container-fluid"> 
-	<div class="row">
+	<!-- <div class="row">
 		<div style="width:100%">
 			<h1 class="adlisting-heading" style="text-align:center">Website Ad Listing</h1>
 		</div>
-	</div>
+	</div> -->
+
+	<?php
+
+	$sql="SELECT * FROM ads WHERE aid='$ad_Id'";
+	$result=mysqli_query($conn,$sql);
+	$row=mysqli_fetch_assoc($result);
+
+
+
+	?>
+
 	<div class="row">
 		<div class="col-md-7">
 			<div class="listing-ss-div">
@@ -197,30 +255,30 @@
 
 					<!-- Indicators -->
 					<ul class="carousel-indicators">
-					  	<li data-target="#demo" data-slide-to="0" class="active"></li>
-					  	<li data-target="#demo" data-slide-to="1"></li>
-					  	<li data-target="#demo" data-slide-to="2"></li>
+						<li data-target="#demo" data-slide-to="0" class="active"></li>
+						<li data-target="#demo" data-slide-to="1"></li>
+						<li data-target="#demo" data-slide-to="2"></li>
 					</ul>
 					  
 					<!-- The slideshow -->
 					<div class="carousel-inner">
-					  	<div class="carousel-item active">
-					  	  <img style="width:100%;height:500px" src="http://natbg.com/wp-content/uploads/2016/09/other-autumn-park-serenity-colors-walk-trees-fall-nature-rest-beautiful-foliage-bench-season-leaves-full-hd-wallpaper.jpg" alt="Los Angeles" width="1100" height="500">
-					  	</div>
-					  	<div class="carousel-item">
-					  	  <img style="width:100%;height:500px" src="https://cn.pling.com/img/d/4/2/8/79779577f314302bbd285e2f858754ea0f04.jpg" alt="Chicago" width="1100" height="500">
-					  	</div>
-					  	<div class="carousel-item">
-					  	  <img style="width:100%;height:500px" src="http://www.intrawallpaper.com/static/images/Golden-Gate-Bridge-HD-Wallpapers-WideScreen2.jpg" alt="New York" width="1100" height="500">
-					  	</div>
+						<div class="carousel-item active">
+						  	<img style="width:100%;height:500px" src="<?php echo $row['imgdst1']; ?>" width="1100" height="500">
+						</div>
+						<div class="carousel-item">
+						  	<img style="width:100%;height:500px" src="<?php echo $row['imgdst2']; ?>" width="1100" height="500">
+						</div>
+						<div class="carousel-item">
+						  	<img style="width:100%;height:500px" src="<?php echo $row['imgdst3']; ?>" width="1100" height="500">
+						</div>
 					</div>
 					  
 					<!-- Left and right controls -->
 					<a class="carousel-control-prev" href="#demo" data-slide="prev">
-					  	<span class="carousel-control-prev-icon"></span>
+						<span class="carousel-control-prev-icon"></span>
 					</a>
 					<a class="carousel-control-next" href="#demo" data-slide="next">
-					  	<span class="carousel-control-next-icon"></span>
+						<span class="carousel-control-next-icon"></span>
 					</a>
 				</div>
 
