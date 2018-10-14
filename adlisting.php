@@ -162,7 +162,7 @@ $ad_Id=$_GET['ad_Id'];
 		width:200px;
 		display:block;
 		margin:0 auto;
-		margin-top:50px;
+		/*margin-top:50px;*/
 		cursor:pointer;
 	}
 	</style>
@@ -305,14 +305,34 @@ $ad_Id=$_GET['ad_Id'];
 				<h2 class="website-name"><?php echo $row1['websiteName']; ?></h2>
 				<h3 class="website-category">DOMAIN: <span style="color:black"><?php echo $row1['websiteDomain']; ?></span></h3>
 				<p class="website-category">WEBSITE TYPE: <span style="color:black"><?php echo $row2['wbtype']; ?></span></p>
+				<?php
+
+				if($row['status']==0)
+				{
+					?>
+					<p class="website-category">STATUS: <span style="color:black">Available</span></p>
+					<?php
+				}
+				else
+				{
+					?>
+					<p class="website-category">STATUS: <span style="color:black">Not-Available</span></p>
+					<?php
+				}
+
+				?>				
 				<div class="website-description-div">
 					<h3 class="website-description-heading">DESCRIPTION:</h3>
 					<p class="website-description"><?php echo $row1['websiteDescription']; ?></p>
 				</div>			
-				<h3 class="website-category">Ad Category: <span style="color:black"><?php echo $row0['adtype']; ?></span></h3>
-				<h3 class="website-category">Page Views Total: <span style="color:black"><?php echo $row1['pageviews']; ?></span></h3>
-				<h3 class="website-category">Page Views Last Month: <span style="color:black"><?php echo $row1['pg_lastmonth']; ?></span></h3>
-				<button class="get-contacts-link">Contact Website Owner</button>
+				<p class="website-category">Ad Category: <span style="color:black"><?php echo $row0['adtype']; ?></span></p>
+				<p class="website-category">Page Views Total: <span style="color:black"><?php echo $row1['pageviews']; ?></span></p>
+				<p class="website-category">Page Views Last Month: <span style="color:black"><?php echo $row1['pg_lastmonth']; ?></span></p>
+				<p class="website-category">Cost: <span style="color:black">$<?php echo $row['cost']; ?> / Day</span></p>
+				<div style="margin:0 3vw 0 0">
+					<button class="get-contacts-link" style="display:inline">Add to Favourites</button>
+					<button class="get-contacts-link" style="display:inline">Contact Website Owner</button>
+				</div>				
 			</div>
 		</div>
 	</div>
