@@ -242,7 +242,23 @@ $ad_Id=$_GET['ad_Id'];
 	$result=mysqli_query($conn,$sql);
 	$row=mysqli_fetch_assoc($result);
 
+	$websiteId=$row['websiteId'];
 
+	$adtype=$row['type'];
+
+	$sql0="SELECT * FROM ad_type WHERE tid='$adtype'";
+	$result0=mysqli_query($conn,$sql0);
+	$row0=mysqli_fetch_assoc($result0);	
+
+	$sql1="SELECT * FROM websites WHERE wid='$websiteId'";
+	$result1=mysqli_query($conn,$sql1);
+	$row1=mysqli_fetch_assoc($result1);
+
+	$websiteType=$row1['websiteType'];
+
+	$sql2="SELECT * FROM website_type WHERE wtid='$websiteType'";
+	$result2=mysqli_query($conn,$sql2);
+	$row2=mysqli_fetch_assoc($result2);
 
 	?>
 
@@ -286,16 +302,16 @@ $ad_Id=$_GET['ad_Id'];
 		</div>
 		<div class="col-md-5">
 			<div class="listing-info-div">
-				<h2 class="website-name">www.MEAGL.com</h2>
-				<h3 class="website-category">CATEGORY: <span style="color:black">Memes</span></h3>
+				<h2 class="website-name"><?php echo $row1['websiteName']; ?></h2>
+				<h3 class="website-category">DOMAIN: <span style="color:black"><?php echo $row1['websiteDomain']; ?></span></h3>
+				<p class="website-category">WEBSITE TYPE: <span style="color:black"><?php echo $row2['wbtype']; ?></span></p>
 				<div class="website-description-div">
 					<h3 class="website-description-heading">DESCRIPTION:</h3>
-					<p class="website-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua.</p>
+					<p class="website-description"><?php echo $row1['websiteDescription']; ?></p>
 				</div>			
-				<h3 class="website-category">Ad Category: <span style="color:black">Banner Ad</span></h3>
-				<h3 class="website-category">Page Views Total: <span style="color:black">16000</span></h3>
-				<h3 class="website-category">Page Views Last Month: <span style="color:black">1900</span></h3>
+				<h3 class="website-category">Ad Category: <span style="color:black"><?php echo $row0['adtype']; ?></span></h3>
+				<h3 class="website-category">Page Views Total: <span style="color:black"><?php echo $row1['pageviews']; ?></span></h3>
+				<h3 class="website-category">Page Views Last Month: <span style="color:black"><?php echo $row1['pg_lastmonth']; ?></span></h3>
 				<button class="get-contacts-link">Contact Website Owner</button>
 			</div>
 		</div>
