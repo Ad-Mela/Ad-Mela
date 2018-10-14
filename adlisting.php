@@ -329,7 +329,7 @@ $ad_Id=$_GET['ad_Id'];
 				<p class="website-category">Page Views Total: <span style="color:black"><?php echo $row1['pageviews']; ?></span></p>
 				<p class="website-category">Page Views Last Month: <span style="color:black"><?php echo $row1['pg_lastmonth']; ?></span></p>
 				<p class="website-category">Cost: <span style="color:black">$<?php echo $row['cost']; ?> / Day</span></p>
-				<div style="margin:0 3vw 0 0">
+				<div style="width:410px;margin:0 auto;display:block" id="adlist-action-div">
 					<button class="get-contacts-link" style="display:inline">Add to Favourites</button>
 					<button class="get-contacts-link" style="display:inline">Contact Website Owner</button>
 				</div>				
@@ -337,7 +337,6 @@ $ad_Id=$_GET['ad_Id'];
 		</div>
 	</div>
 </div>
-
 
 </body>
 </html>
