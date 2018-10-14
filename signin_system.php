@@ -21,13 +21,23 @@ if (isset($_POST['login-button'])) {
 	// echo '~'.password_verify($password,$row['pwd']).'~';
 
 	if(mysqli_num_rows($result)>0 && password_verify ( $password , $row['pwd'] )){
+
+		session_start();
 		
 		$_SESSION['id']=$row['uid'];
 		$_SESSION['username']=$username;
-		echo $_SESSION['id'];
-		echo $_SESSION['username'];
 
-		
+		$id=$row['uid'];
+
+		$sql3="SELECT profilePicLocation FROM users WHERE uid='$id'";
+		$result3=mysqli_query($conn,$sql3);
+		$row3=mysqli_fetch_assoc($result3);
+
+		$_SESSION['profilePicLocation']=$row3['profilePicLocation'];
+		// echo $_SESSION['id'];
+		// echo $_SESSION['username'];
+
+		header("LOCATION: user_profile.php");		
 	}
 	else{
 		echo "Invalid";

@@ -1,15 +1,36 @@
+<?php
+
+session_start();
+// echo "yo";
+// echo $_SESSION['id'];
+if(isset($_SESSION['id']))
+{
+// echo "ho";
+include 'dbh.php';
+
+$userId=mysqli_real_escape_string($conn,$_SESSION['id']);
+?>
+
 <!doctype html>
 <html lang="en">
 	<head>
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	    
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
+	<script src="general.js"></script>
+
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	
 	<style type="text/css">
 	@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);
 	a,a:hover{
@@ -189,12 +210,12 @@
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
 </head>
 	
-<script>
+<!-- <script>
 	function validateForm() {
 	var x = document.forms["myForm"]["wname"].value;
 		if (x == "" || x.length>25) {
@@ -237,7 +258,7 @@
 				return false;
 	}
 }
-</script>
+</script> -->
 	
 <body>
 	
@@ -291,17 +312,32 @@
 
 <div class="outer-container container-fluid" style="padding-top:0px"> 
 	<div class="signin-box signin-box-background">
-		<form name="ad_listing_form" method="post">
+		<form class="ad_listing_form" name="ad_listing_form" method="post" multipart/formdata>
 			<div class="container">
 
 				<h1 class="ad-listing-heading">List Ad Space</h1>			
 			
 				<div class="row">      
-					<input type="text" required="true" name="wname" placeholder="Website Name">      
+					<input type="text" required="true" name="wname" placeholder="Website Name" required>      
 				</div> 
 				
 				<div class="row">      
-					<input type="text" name="wdomain" placeholder="Website Domain (eg: www.google.com)">
+					<input type="text" name="wdomain" placeholder="Website Domain (eg: www.google.com)" required>
+				</div> 
+				<hr>
+				<div class="row">      
+					<h2 class="info-heading">Website Type</h2>
+				</div> 
+				<div class="row">      
+					<select class="form-control" id="website_type" name="wbtype">
+					    <option value="Social">Social</option>
+					    <option value="Educational">Educational</option>
+					    <option value="Entertainment">Entertainment</option>
+						<option value="Utility">Utility</option>
+						<option value="Community">Community</option>
+						<option value="News">News</option>
+						<option value="Gaming">Gaming</option>
+					</select>
 				</div> 
 				<hr>	
 				<div class="row">      
@@ -309,15 +345,15 @@
 				</div> 
 
 				<div class="row">      
-					<textarea class="website-info-textarea" placeholder="Enter basic info like what's the website about, whom does it cater?" style="height:100px;resize:none" name="desc"></textarea>
+					<textarea class="website-info-textarea" placeholder="Enter basic info like what's the website about, whom does it cater?" style="height:100px;resize:none" name="desc" required></textarea>
 				</div>
 				<br>
 				<div class="row">
 					<div class="col-md-6">
-						<input class="small-textbox" placeholder="Total Page Views" name="pviews" type="number"> 
+						<input class="small-textbox" placeholder="Total Page Views" name="pviews" type="number" required> 
 					</div>
 					<div class="col-md-6">
-						<input class="small-textbox" placeholder="Page Views Last Month" name="lmpviews" type="number">
+						<input class="small-textbox" placeholder="Page Views Last Month" name="lmpviews" type="number" required>
 					</div>
 				</div>
 				<hr>
@@ -327,11 +363,23 @@
 				
 				<div class="row">  
 					<div class="col-md-6">
-						<input class="small-textbox" name="length" type="number" placeholder="Length (in cm)">      
+						<input class="small-textbox" name="height" type="number" placeholder="Height (in cm)" required>      
 					</div>
 					<div class="col-md-6">
-						<input class="small-textbox" name="width" type="number" placeholder="Width (in cm)">      
+						<input class="small-textbox" name="width" type="number" placeholder="Width (in cm)" required>      
 					</div>
+				</div>
+				<hr>
+				<div class="row">
+					<h2 class="info-heading">Ad Type</h2>
+				</div>
+				<div class="row">
+					<select class="form-control" id="ad_type" name="adtype">
+					    <option value="Banner">Banner</option>
+					    <option value="Pop-Up">Pop-Up</option>
+					    <option value="Video">Video</option>
+						<option value="Referral Link">Referral Link</option>
+					</select>
 				</div>
 				<hr>
 				<div class="row">      
@@ -339,7 +387,7 @@
 				</div>
 
 				<div class="row">      
-					<input style="width: 100%;margin-bottom: 6px;float:left;border-radius: 5px;padding: 5px;border: 1px solid #ccc;" name="cost" type="number" placeholder="in $/day">      
+					<input style="width: 100%;margin-bottom: 6px;float:left;border-radius: 5px;padding: 5px;border: 1px solid #ccc;" name="cost" type="number" placeholder="in $/day" required>      
 				</div>
 				
 
@@ -353,13 +401,13 @@
 					        </div>
 					        <div class="row">
 								<div class="col-md-4">
-									<input type="file" name="fileToUpload1" id="fileToUpload">
+									<input type="file" name="fileToUpload1" id="fileToUpload" required>
 								</div>
 								<div class="col-md-4">
-									<input type="file" name="fileToUpload2" id="fileToUpload">
+									<input type="file" name="fileToUpload2" id="fileToUpload" required>
 								</div>
 								<div class="col-md-4">
-									<input type="file" name="fileToUpload3" id="fileToUpload">
+									<input type="file" name="fileToUpload3" id="fileToUpload" required>
 								</div>
 					        </div>
 				     	</div>
@@ -369,7 +417,7 @@
 				<a onclick="document.getElementById('id01').style.display='block'" class="btn1">Upload Images</a>
 
 				<div class="row">
-					<input class="submit" name="submit" type="submit" value="List Advertise" onClick="validateForm();" >
+					<input class="listAd" id="listAd" name="listAd" type="submit" value="List Advertise">
 				</div>
 				<br>
 			</div>	
@@ -384,3 +432,9 @@
 	
 	</body>
 </html>
+
+<?php
+
+}
+
+?>

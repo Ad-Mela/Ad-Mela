@@ -20,3 +20,53 @@ function validationForm(){
    }
 }
 
+$(document).ready(function(){
+    // alert("hi");
+    // console.log("hi");
+
+    $(".ad_listing_form").submit(function(e){ 
+        e.preventDefault();        
+        // document.getElementById("listAd").disabled = true;
+        // $(".tip_money_button").addClass('disabled');
+        var formData = new FormData(this);  
+        alert(formData);
+        /*document.getElementById("fpError").innerHTML="Sending mail";*/
+        // alert("here");
+        $.ajax
+        ({
+            type: 'POST',
+            url: 'advertise_system.php',
+            data:formData,
+            //dataType: 'text',  // what to expect back from the PHP script, if anything
+            cache: false,
+            contentType: false,
+            processData: false,                
+            success: function (response) 
+            {
+                // alert("ikde ala re!");
+                alert(response);   
+                
+                if(response.trim()=='extension error 1')
+                {
+
+                }
+                else if(response.trim()=='extension error 2')
+                {
+
+                }
+                else if(response.trim()=='extension error 3')
+                {
+
+                }
+                // $(".tip_money_button").removeClass('disabled');
+                // window.location.href=response;
+                                
+            },                
+            error: function(xhr, status, error) {
+                alert(xhr.responseText);
+            }              
+        });
+        
+        return false;
+    })
+});
