@@ -1,12 +1,26 @@
-<!DOCTYPE html>
-<html>
+<?php
+
+session_start();
+
+include 'dbh.php';
+?>
+
+<!doctype html>
 <head>
-	<title>Categories</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-<style type="text/css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+   
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+    <script src="general.js"></script>
+
+	<style type="text/css">
 	@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);
 	a,a:hover{
 		text-decoration: none;
@@ -14,12 +28,56 @@ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLP
 	*{
 		font-family: 'Open Sans', sans-serif;
 	}
+
+	.header-right {
+        /*float: right;*/
+        position:absolute;
+        right:40px;
+    }
+
+    .header-up-dp{
+        width:40px;
+        height:40px;
+        border-radius: 50%;
+        margin-left:10px;
+    }
+    .header-ad-icon{
+        position:relative;
+        /*right:120px;*/
+        width:40px;
+        height:40px;
+        /*top:12px;*/
+        /*float:left;*/
+        margin-top:20px;
+        padding:5px;
+        padding-left:10px;
+    }
+    .header-notif-icon{
+        /*float:left;*/
+        padding:5px;
+    }
+
 	.outer-container{
 		padding:0px;
 		width:100%;
-		top:76px;
+		/*top:97px;*/
+		margin-top:50px;
 		position:relative;
 	}
+	.info-box-element{
+		width:70px;
+		display:block;
+		margin:0 auto;
+	}
+	
+	.info-headings{
+		text-align:center;
+	}
+	
+	.info-box-info{
+		text-align:center;
+	}
+	
 	.category-box{
 		padding:0px;
 		margin-top:5px;
@@ -37,24 +95,15 @@ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLP
     	filter: alpha(opacity=40)				
 	}
 	
-	.header{
-		text-align:center;
-		border-bottom:1px solid;
-		box-shadow: 2px 2px 18px #222f3e;
-		position:fixed;
-		height:70px;
-		background:#222f3e;
-		z-index:10;
-		color:white;
-	}
+	
 
 	@media only screen and (min-width: 768px) {
 	    .left-nav{
 			border-right: 1px solid #cccccc;
 			height:100vh;
 			position:fixed;
-			background-color: #3b607c;
-			margin-top:-6px;
+			background-color: #343a40;
+			/*margin-top:-6px;*/
 			color:white;
 		}
 		.categories-div{
@@ -76,7 +125,7 @@ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLP
 	@media only screen and (min-width: 300px) {
 	    .left-nav{
 			border-right: 1px solid #cccccc;
-			background-color: #3b607c;
+			background-color: #343a40;
 			color:white;
 		}
 	}
@@ -100,197 +149,151 @@ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLP
 	  padding-left: 7px;
 	  padding-right: 5px;
 	}
-</style>
+	</style>
 </head>
 <body>
-	<div class="container-fluid header">
+	<!-- <div class="container-fluid header">
 		<a href="index.php"><h1 style="padding-top:10px;color:white">Ad-Mela</h1></a>
-	</div>
+	</div> -->
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<a class="navbar-brand" href="index.php">AdMela</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse header-boy" id="navbarNavAltMarkup" style="">
+			<div class="navbar-nav" style="float:left">
+				<a class="nav-item nav-link " href="categories.php">Categories <!-- <span class="sr-only">(current)</span> --></a>
+				<!-- <a class="nav-item nav-link" href="#"></a>
+				<a class="nav-item nav-link" href="#">Pricing</a> -->
+			
+				<?php
+
+				if(isset($_SESSION['id']))
+				{
+					?>
+					<a href="logout.php" class="nav-item nav-link">Log Out</a>
+					<?php
+				}
+				?>
+			</div>
+			<div class="header-right">
+				<?php
+				if(isset($_SESSION['id']))
+				{
+					?>
+					<a href="advertise.php" class="header-notif-icon">
+						<i style="font-size:30px;color:white" class="far fa-bell"></i>
+					</a>
+					<a href="advertise.php" class="header-ad-icon">
+						<i style="font-size:30px;color:white" class="fas fa-upload"></i>
+					</a>
+					<a href="user_profile.php" class="header-dp-icon">
+						<img src="<?php echo $_SESSION['profilePicLocation']; ?>" class="header-up-dp">
+					</a>
+					<?php
+				}
+				else
+				{
+					?>
+					<a href="signup.php" class="nav-item nav-link" style="color:white">Sign Up | Log In</a>
+					<?php
+				}
+				?>
+			</div>
+			
+		</div>
+	</nav>
 	
 	
-<div class="container-fluid outer-container">
+	<div class="container-fluid outer-container">
 
-<div class="row">
+		<div class="row">
 
-<div class="col-md-2 left-nav">	
-	<div style="text-align:center;padding-top:20px">				
-			<h2 style="font-size:27px">E - COMMERCE<h2>
-	</div>
-	<hr>
-	<div style="text-align:center">
-			<p style="font-size:20px">Filters</p>
-	</div>
-	
-</div>
+			<div class="col-md-2 left-nav">	
+				<div style="text-align:center;padding-top:20px">				
+					<h2 style="font-size:27px">EXPLORE ADS<h2>					
+				</div>
+				
+				<div>
+					<!-- <p style="font-size:20px;text-align:center">Filters</p> -->
+					<hr>
+					<p style="font-size:15px;text-align:center">Website Type</p>
+					<select class="form-control" name="wbtype">
+						<option value="All" >All</option>
+						<option value="Social" >Social</option>
+						<option value="Educational" >Educational</option>
+						<option value="Utility" >Utility</option>
+						<option value="Community" >Community</option>
+						<option value="News" >News</option>
+						<option value="Gaming" >Gaming</option>
+					</select>
+					<hr>
+					<p style="font-size:15px;text-align:center">Ad Type</p>
+					<select class="form-control" name="adtype">
+						<option value="All" >All</option>
+						<option value="Banner" >Banner</option>
+						<option value="Pop-Up" >Pop-Up</option>
+						<option value="Video" >Video</option>
+						<option value="Referral Link" >Referral Link</option>
+					</select>
+					<hr>
+					<p style="font-size:15px">Height (in px)</p>
+					<input type="range" name="height" min="0" max="1024" value="0">
+					<hr>
+					<p style="font-size:15px">Width (in px)</p>
+					<input type="range" name="width" min="0" max="1024" value="0">
+					<hr>
+					<p style="font-size:15px">Cost (in $ / day)</p>
+					<input type="range" name="cost" min="1" max="1000000" value="0">
+					<hr>
+				</div>
+				
+			</div>
 
-<div class="col-md-10 categories-div">
-	<div class="row">
-		<div class="col-md-4">
-			<a href="#">
-			<div class="category-box" id="web1">
-				<p>meagl</p>
-			</div>
-			</a>
-		</div>
-		<div class="col-md-4">
-			<a href="#">
-			<div class="category-box" id="web2">
-				<p>reddit</p>
-			</div>
-			</a>
-		</div>
-		<div class="col-md-4">
-			<a href="#">
-			<div class="category-box" id="web3">
-				<p>facebook</p>
-			</div>
-			</a>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">
-			<a href="#">
-			<div class="category-box" id="web1">
-				<p>yahoo</p>
-			</div>
-			</a>
-		</div>
-		<div class="col-md-4">
-			<a href="#">
-			<div class="category-box" id="web2">
-				<p>tumblr</p>
-			</div>
-			</a>
-		</div>
-		<div class="col-md-4">
-			<a href="#">
-			<div class="category-box" id="web3">
-				<p>stumblupon</p>
-			</div>
-			</a>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">
-			<a href="#">
-			<div class="category-box" id="web1">
-				<p>Website1</p>
-			</div>
-			</a>
-		</div>
-		<div class="col-md-4">
-			<a href="#">
-			<div class="category-box" id="web2">
-				<p>Website2</p>
-			</div>
-			</a>
-		</div>
-		<div class="col-md-4">
-			<a href="#">
-			<div class="category-box" id="web3">
-				<p>Website3</p>
-			</div>
-			</a>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">
-			<a href="#">
-			<div class="category-box" id="web1">
-				<p>Website1</p>
-			</div>
-			</a>
-		</div>
-		<div class="col-md-4">
-			<a href="#">
-			<div class="category-box" id="web2">
-				<p>Website2</p>
-			</div>
-			</a>
-		</div>
-		<div class="col-md-4">
-			<a href="#">
-			<div class="category-box" id="web3">
-				<p>Website3</p>
-			</div>
-			</a>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">
-			<a href="#">
-			<div class="category-box" id="web1">
-				<p>Website1</p>
-			</div>
-			</a>
-		</div>
-		<div class="col-md-4">
-			<a href="#">
-			<div class="category-box" id="web2">
-				<p>Website2</p>
-			</div>
-			</a>
-		</div>
-		<div class="col-md-4">
-			<a href="#">
-			<div class="category-box" id="web3">
-				<p>Website3</p>
-			</div>
-			</a>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">
-			<a href="#">
-			<div class="category-box" id="web1">
-				<p>Website1</p>
-			</div>
-			</a>
-		</div>
-		<div class="col-md-4">
-			<a href="#">
-			<div class="category-box" id="web2">
-				<p>Website2</p>
-			</div>
-			</a>
-		</div>
-		<div class="col-md-4">
-			<a href="#">
-			<div class="category-box" id="web3">
-				<p>Website3</p>
-			</div>
-			</a>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">
-			<a href="#">
-			<div class="category-box" id="web1">
-				<p>Website1</p>
-			</div>
-			</a>
-		</div>
-		<div class="col-md-4">
-			<a href="#">
-			<div class="category-box" id="web2">
-				<p>Website2</p>
-			</div>
-			</a>
-		</div>
-		<div class="col-md-4">
-			<a href="#">
-			<div class="category-box" id="web3">
-				<p>Website3</p>
-			</div>
-			</a>
-		</div>
-	</div>
-	
-</div>
-		
-</div>
+			<div class="col-md-10 categories-div" id="categories-div" style="margin-top:10px">
+				<?php
+
+				$userId=$_SESSION['id'];
+
+				$sql="SELECT * FROM ads";
+				$result=mysqli_query($conn,$sql);				
+
+				$count=1;
+
+				while($row=mysqli_fetch_assoc($result))
+				{
+
+					if($count%3==1)
+					{
+						?>
+						<div class="row">
+						<?php
+					}
+					?>
+						<div class="col-md-4">
+							<a href="#">
+							<div class="category-box" style="background-image: url('<?php echo $row["imgdst1"]; ?>')">
+								<p>meagl</p>
+							</div>
+							</a>
+						</div>
+					<?php	
+					if($count%3==0)
+					{
+						?>
+						</div>	
+						<?php
+					}
+					$count+=1;
+				}
+
+				?>	
 
 
-</div>	
+			</div>
+		</div>
+	</div>	
+
 </body>
 </html>
