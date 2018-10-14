@@ -177,6 +177,7 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
 
     .w3-modal{
     	margin-top: 10px;
+    	/*background: #606266;*/
     }
 
     input[type=submit] {
@@ -192,9 +193,9 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
 	    margin-right:auto;
 	}
 
-	.btn1{
+	#upload-image-button{
 		padding:10px 35%; 
-	    background:#0fb9b1; 
+	    background:#2ecc71; 
 	    border:0 none;
 	    color:white;
 	    margin-top:10px;
@@ -203,7 +204,33 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
 	    border-radius: 5px; 
 	    margin-left:auto;
 	    margin-right:auto;
+	    display:block;
+	    text-align:center;
+	    width:100%;
 	}
+
+	#wrapper
+	{
+ 		text-align:center;
+ 		margin:0 auto;
+ 		padding:0px;
+		width:995px;
+	}
+	#output_image1
+	{
+ 		max-width:250px;
+	}
+
+#output_image2
+{
+ max-width:250px;
+}
+
+#output_image3
+{
+ max-width:250px;
+}
+
 	</style>
 
 	<title>Ad-Mela</title>
@@ -259,6 +286,39 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
 	}
 }
 </script> -->
+
+<script type='text/javascript'>
+function preview_image1(event) 
+{
+ var reader = new FileReader();
+ reader.onload = function()
+ {
+  var output = document.getElementById('output_image1');
+  output.src = reader.result;
+ }
+ reader.readAsDataURL(event.target.files[0]);
+}
+function preview_image2(event) 
+{
+ var reader = new FileReader();
+ reader.onload = function()
+ {
+  var output = document.getElementById('output_image2');
+  output.src = reader.result;
+ }
+ reader.readAsDataURL(event.target.files[0]);
+}
+function preview_image3(event) 
+{
+ var reader = new FileReader();
+ reader.onload = function()
+ {
+  var output = document.getElementById('output_image3');
+  output.src = reader.result;
+ }
+ reader.readAsDataURL(event.target.files[0]);
+}
+</script>
 	
 <body>
 	
@@ -389,9 +449,18 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
 				<div class="row">      
 					<input style="width: 100%;margin-bottom: 6px;float:left;border-radius: 5px;padding: 5px;border: 1px solid #ccc;" name="cost" type="number" placeholder="in $/day" required>      
 				</div>
-				
 
-				<div id="id01" class="w3-modal">
+				
+				<hr>
+				<a onclick="document.getElementById('id01').style.display='block'" id="upload-image-button">Upload Images</a>
+				<hr>
+				<div class="row">
+					<input class="listAd" id="listAd" name="listAd" type="submit" value="List Advertise">
+				</div>
+				<br>
+			</div>	
+
+			<div id="id01" class="w3-modal">
 				    <div class="w3-modal-content">
 				      	<div class="w3-container">
 					        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
@@ -401,26 +470,21 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
 					        </div>
 					        <div class="row">
 								<div class="col-md-4">
-									<input type="file" name="fileToUpload1" id="fileToUpload" required>
+									<input type="file" name="fileToUpload1" id="fileToUpload" onchange="preview_image1(event)" required>
+									<img id="output_image1"/>
 								</div>
 								<div class="col-md-4">
-									<input type="file" name="fileToUpload2" id="fileToUpload" required>
+									<input type="file" name="fileToUpload2" id="fileToUpload" onchange="preview_image2(event)" required>
+									<img id="output_image2"/>
 								</div>
 								<div class="col-md-4">
-									<input type="file" name="fileToUpload3" id="fileToUpload" required>
+									<input type="file" name="fileToUpload3" id="fileToUpload" onchange="preview_image3(event)" required>
+									<img id="output_image3"/>
 								</div>
 					        </div>
 				     	</div>
 				    </div>
 			  	</div>
-
-				<a onclick="document.getElementById('id01').style.display='block'" class="btn1">Upload Images</a>
-
-				<div class="row">
-					<input class="listAd" id="listAd" name="listAd" type="submit" value="List Advertise">
-				</div>
-				<br>
-			</div>	
 
 			<p id="error" style="color:red;text-align:center;width:100%;font-size:20px"></p>
 					
