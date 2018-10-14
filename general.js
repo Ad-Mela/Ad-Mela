@@ -29,7 +29,7 @@ $(document).ready(function(){
         // document.getElementById("listAd").disabled = true;
         // $(".tip_money_button").addClass('disabled');
         var formData = new FormData(this);  
-        alert(formData);
+        // alert(formData);
         /*document.getElementById("fpError").innerHTML="Sending mail";*/
         // alert("here");
         $.ajax
