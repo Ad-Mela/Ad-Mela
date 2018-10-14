@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 14, 2018 at 04:02 PM
+-- Generation Time: Oct 14, 2018 at 10:04 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 7.0.9
 
@@ -46,7 +46,8 @@ CREATE TABLE `ads` (
 --
 
 INSERT INTO `ads` (`aid`, `websiteId`, `websiteOwnerId`, `width`, `height`, `type`, `status`, `cost`, `favourites`, `imgdst1`, `imgdst2`, `imgdst3`) VALUES
-(1, 1, 9, 500, 500, 1, 0, 5, 0, 'ads/1_1.jpg', 'ads/1_2.jpg', 'ads/1_3.jpg');
+(1, 1, 9, 500, 500, 1, 0, 5, 0, 'ads/1_1.jpg', 'ads/1_2.jpg', 'ads/1_3.jpg'),
+(2, 2, 9, 600, 500, 3, 0, 100, 0, 'ads/2_1.jpg', 'ads/2_2.jpg', 'ads/2_3.jpg');
 
 -- --------------------------------------------------------
 
@@ -67,7 +68,7 @@ CREATE TABLE `ad_type` (
 INSERT INTO `ad_type` (`tid`, `adtype`, `totalWebsites`) VALUES
 (1, 'Banner', 1),
 (2, 'Pop-Up', 0),
-(3, 'Video', 0),
+(3, 'Video', 1),
 (4, 'Referral Link', 0);
 
 -- --------------------------------------------------------
@@ -122,6 +123,7 @@ CREATE TABLE `websites` (
   `websiteDomain` varchar(50) NOT NULL,
   `ownerId` int(11) NOT NULL,
   `websiteType` int(11) NOT NULL,
+  `websiteDescription` text NOT NULL,
   `pageviews` int(11) NOT NULL,
   `pg_lastmonth` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -130,8 +132,9 @@ CREATE TABLE `websites` (
 -- Dumping data for table `websites`
 --
 
-INSERT INTO `websites` (`wid`, `websiteName`, `websiteDomain`, `ownerId`, `websiteType`, `pageviews`, `pg_lastmonth`) VALUES
-(1, 'MEAGL', 'www.meagl.com', 9, 3, 17000, 1400);
+INSERT INTO `websites` (`wid`, `websiteName`, `websiteDomain`, `ownerId`, `websiteType`, `websiteDescription`, `pageviews`, `pg_lastmonth`) VALUES
+(1, 'MEAGL', 'www.meagl.com', 9, 3, 'MEAGL is a website about memes', 17000, 1400),
+(2, 'Goodbooks', 'www.goodbooks.com', 9, 4, 'A second hand book store', 150000, 1500);
 
 -- --------------------------------------------------------
 
@@ -153,7 +156,7 @@ INSERT INTO `website_type` (`wtid`, `wbtype`, `totalWebsites`) VALUES
 (1, 'Social', 0),
 (2, 'Educational', 0),
 (3, 'Entertainment', 1),
-(4, 'Utility', 0),
+(4, 'Utility', 1),
 (5, 'Community', 0),
 (6, 'News', 0),
 (7, 'Gaming', 0);
@@ -213,7 +216,7 @@ ALTER TABLE `website_type`
 -- AUTO_INCREMENT for table `ads`
 --
 ALTER TABLE `ads`
-  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `ad_type`
 --
@@ -233,7 +236,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `websites`
 --
 ALTER TABLE `websites`
-  MODIFY `wid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `wid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `website_type`
 --

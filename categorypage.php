@@ -263,6 +263,11 @@ include 'dbh.php';
 
 				while($row=mysqli_fetch_assoc($result))
 				{
+					$websiteId=$row['websiteId'];
+
+					$sql1="SELECT * FROM websites WHERE wid='$websiteId'";
+					$result1=mysqli_query($conn,$sql1);
+					$row1=mysqli_fetch_assoc($result1);
 
 					if($count%3==1)
 					{
@@ -272,9 +277,9 @@ include 'dbh.php';
 					}
 					?>
 						<div class="col-md-4">
-							<a href="#">
+							<a href="adlisting.php?ad_Id=<?php echo $row['aid']; ?>">
 							<div class="category-box" style="background-image: url('<?php echo $row["imgdst1"]; ?>')">
-								<p>meagl</p>
+								<p><?php echo $row1['websiteName']; ?></p>
 							</div>
 							</a>
 						</div>
