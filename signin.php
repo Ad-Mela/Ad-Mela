@@ -118,10 +118,6 @@ if(!isset($_SESSION['id']))
         margin:0 auto;
     }
 
-    span.psw {
-        float: right;
-        padding-top: 16px;
-    }
     button {
         background-color: #666;
         color: white;
@@ -182,10 +178,6 @@ if(!isset($_SESSION['id']))
 
     /* Change styles for span and cancel button on extra small screens */
     @media screen and (max-width: 300px) {
-        span.psw {
-           display: block;
-           float: none;
-        }
         .cancelbtn {
            width: 100%;
         }
@@ -206,16 +198,16 @@ if(!isset($_SESSION['id']))
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid" align="left">
                 <div class="nav-bar-link-box">
-                    <a class="nav-bar-link" href="index.html">Home</a>
+                    <a class="nav-bar-link" href="index.php">Home</a>
                 </div>
                 <div class="nav-bar-link-box">
-                    <a class="nav-bar-link" href="categorypage.html">Categories</a>
+                    <a class="nav-bar-link" href="categorypage.php">Categories</a>
                 </div>
                 <div class="nav-bar-link-box">
-                    <a class="nav-bar-link" href="advertise.html">Post Ad</a>
+                    <a class="nav-bar-link" href="advertise.php">Post Ad</a>
                 </div>
                 <div class="nav-bar-link-box">
-                    <a class="nav-bar-link" href="signin.html">Sign in</a>
+                    <a class="nav-bar-link" href="signin.php">Sign in</a>
                 </div>               
             </div>
         </nav>
@@ -234,14 +226,10 @@ if(!isset($_SESSION['id']))
                     <input type="password" class="signinbox-input-background" placeholder="Password" name="psw" required>
                         
                     <button type="submit" name="login-button" class="login-button">Login</button>
-                    <label style="color:#fff">
-                        <input type="checkbox" checked="checked" name="remember"> Remember me
-                    </label>
                 </div>
 
-                <div class="signinbox-footer">
-                    <button type="button" class="cancelbtn">Cancel</button>
-                    <span class="psw"><a href="#" style="color:#fff">Forgot password?</a></span>
+                <div class="signinbox-footer"> 
+                    <button type="button" class="cancelbtn" onclick="window.location.href='signup.php'">Sign Up</button>
                 </div>
             </form>
         </div>        

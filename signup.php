@@ -121,12 +121,11 @@ if(!isset($_SESSION['id']))
         margin:0 auto;
     }
 
-
-
-    span.psw {
-        float: right;
-        padding-top: 16px;
+    .login-button{
+        /*background-color: #aab0c1;*/
+        background-color: #0fb9b1;
     }
+
     button {
         background-color: #666;
         color: white;
@@ -139,12 +138,6 @@ if(!isset($_SESSION['id']))
 
     button:hover {
         opacity: 0.8;
-    }
-
-    .cancelbtn {
-        width: auto;
-        padding: 10px 18px;
-         background-color: #666;
     }
 
     .dot {
@@ -186,16 +179,6 @@ if(!isset($_SESSION['id']))
         width:100%;
     }
 
-    /* Change styles for span and cancel button on extra small screens */
-    @media screen and (max-width: 300px) {
-        span.psw {
-           display: block;
-           float: none;
-        }
-        .cancelbtn {
-           width: 100%;
-        }
-    }
     </style>
 
 	<title>Signup</title>
@@ -209,16 +192,16 @@ if(!isset($_SESSION['id']))
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid" align="left">
                 <div class="nav-bar-link-box">
-                    <a class="nav-bar-link" href="index.html">Home</a>
+                    <a class="nav-bar-link" href="index.php">Home</a>
                 </div>
                 <div class="nav-bar-link-box">
-                    <a class="nav-bar-link" href="categorypage.html">Categories</a>
+                    <a class="nav-bar-link" href="categorypage.php">Categories</a>
                 </div>
                 <div class="nav-bar-link-box">
-                    <a class="nav-bar-link" href="advertise.html">Post Ad</a>
+                    <a class="nav-bar-link" href="advertise.php">Post Ad</a>
                 </div>
                 <div class="nav-bar-link-box">
-                    <a class="nav-bar-link" href="signin.html">Sign in</a>
+                    <a class="nav-bar-link" href="signin.php">Sign in</a>
                 </div>               
             </div>
         </nav>
@@ -228,7 +211,7 @@ if(!isset($_SESSION['id']))
         <div class="signin-box signin-box-background" style="padding-bottom:10px">
             <form name="signup_form" method="Post" action="signup_system.php">
                 <div style="text-align:center">
-                    <!-- <img style="border-radius:50%" class="dot" src="https://i.pinimg.com/originals/3b/7d/6f/3b7d6f60e2d450b899c322266fc6edfd.png"> -->
+
                     <img style="border-radius:50%" class="dot" src="https://previews.123rf.com/images/solargaria/solargaria1709/solargaria170900007/85362512-user-icon-male-avatar-in-business-suit-businessman-flat-icon-man-in-business-suit-avatar-of-business.jpg">
                 </div>
                 <div class="container">
@@ -243,33 +226,11 @@ if(!isset($_SESSION['id']))
                     <input type="email" class="signinbox-input-background" placeholder="Email" name="email" required>
 
                     <input type="password" class="signinbox-input-background" placeholder="Password" name="psw" required>
-                        
-                    <!-- <button type="submit" class="login-button">Sign Up</button> -->
-                    <input type="submit" class="signinbox-input-background" name="submit"></input>
-                    <!-- <label style="color:#fff;width:100%">
-                        <input type="checkbox" style="display:inline" checked="checked" name="remember"> Remember me
 
-                        <span class="psw" style="display:inline"><a href="#" style="color:#fff">Forgot password?</a></span>
-                    </label> -->
-
-                    <div>
-                        <p style="color:white">
-                            <input type="checkbox" checked="checked" name="remember"> Remember me
-                            <span style="float:right;margin-right:3px"><a href="#" style="color:#7ed6df">Forgot password?</a></span>   
-                        </p>
-                        
-                    </div>
-
+                    <input type="submit" class="signinbox-input-background login-button" value="Sign Up" name="submit"></input>
                     <p style="color:#fff;font-size:15px;padding-top:10px">By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
-                    
-                    <!-- <span class="psw"><a href="#" style="color:#fff">Forgot password?</a></span> -->
-
                 </div>
 
-                <!-- <div class="signinbox-footer">
-                    <button type="button" class="cancelbtn">Cancel</button>
-                    <span class="psw"><a href="#" style="color:#fff">Forgot password?</a></span>
-                </div> -->
             </form>
         </div>
     </div>

@@ -104,7 +104,7 @@ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLP
 </head>
 <body>
 	<div class="container-fluid header">
-		<a href="#"><h1 style="padding-top:10px;color:white">Ad-Mela</h1></a>
+		<a href="index.php"><h1 style="padding-top:10px;color:white">Ad-Mela</h1></a>
 	</div>
 	
 	
