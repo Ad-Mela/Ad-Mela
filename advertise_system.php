@@ -52,7 +52,7 @@ $sql000="UPDATE website_type SET totalWebsites=totalWebsites+1 WHERE wtid='$wtid
 $result000=mysqli_query($conn,$sql000);
 
 //insert into websites table
-$sql0="INSERT INTO websites (websiteName,websiteDomain,ownerId,websiteType,pageviews,pg_lastmonth) VALUES ('$websitename','$wdomain','$userId','$wtid','$pviews','$lmpviews')";
+$sql0="INSERT INTO websites (websiteName,websiteDomain,ownerId,websiteType,websiteDescription,pageviews,pg_lastmonth) VALUES ('$websitename','$wdomain','$userId','$wtid','$desc','$pviews','$lmpviews')";
 $result0=mysqli_query($conn,$sql0);
 
 $website_Id = $conn->insert_id;
