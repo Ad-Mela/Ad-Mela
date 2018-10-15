@@ -221,15 +221,15 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
  		max-width:250px;
 	}
 
-#output_image2
-{
- max-width:250px;
-}
+	#output_image2
+	{
+	 max-width:250px;
+	}
 
-#output_image3
-{
- max-width:250px;
-}
+	#output_image3
+	{
+	 max-width:250px;
+	}
 
 	</style>
 
@@ -356,9 +356,9 @@ function preview_image3(event)
         </div>
         <!-- <a href="logout.php" class="nav-item nav-link" style="color:white">Log Out</a> -->
         <div class="header-right">
-            <a href="advertise.php" class="header-notif-icon">
+            <!-- <a href="advertise.php" class="header-notif-icon">
                 <i style="font-size:30px;color:white" class="far fa-bell"></i>
-            </a>
+            </a> -->
             <a href="advertise.php" class="header-ad-icon">
                 <i style="font-size:30px;color:white" class="fas fa-upload"></i>
             </a>
@@ -461,13 +461,14 @@ function preview_image3(event)
 			</div>	
 
 			<div id="id01" class="w3-modal">
-				    <div class="w3-modal-content">
+				    <div class="w3-modal-content" style="padding:50px">
 				      	<div class="w3-container">
 					        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
 					        
 					        <div class="row">
-					        	<p style="width: 100%;text-align: center">Upload 3 Images</p>
+					        	<p style="width: 100%;text-align: center;font-size:20px">Upload 3 Screenshots</p>
 					        </div>
+					        <br>
 					        <div class="row">
 								<div class="col-md-4">
 									<input type="file" name="fileToUpload1" id="fileToUpload" onchange="preview_image1(event)" required>
@@ -501,6 +502,10 @@ function preview_image3(event)
 
 <?php
 
+}
+else
+{
+	header("LOCATION: signup.php");
 }
 
 ?>

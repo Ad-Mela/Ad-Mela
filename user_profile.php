@@ -273,9 +273,9 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
             </div>
             <a href="logout.php" class="nav-item nav-link" style="color:white">Log Out</a>
             <div class="header-right">
-                <a href="advertise.php" class="header-notif-icon">
+                <!-- <a href="advertise.php" class="header-notif-icon">
                     <i style="font-size:30px;color:white" class="far fa-bell"></i>
-                </a>
+                </a> -->
                 <a href="advertise.php" class="header-ad-icon">
                     <i style="font-size:30px;color:white" class="fas fa-upload"></i>
                 </a>
@@ -299,6 +299,33 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
                             <div class="row" style="margin-top:5px">
                                 <h2 style="text-align:center;width:100%"><?php echo $_SESSION['username']; ?></h2>
                             </div>
+                            <?php
+
+                            $userId=$_SESSION['id'];
+
+                            $sql00="SELECT email FROM users WHERE uid='$userId'";
+                            $result00=mysqli_query($conn,$sql00);
+                            $row00=mysqli_fetch_assoc($result00);
+
+                            $sql01="SELECT * FROM ads WHERE websiteOwnerId='$userId'";
+                            $result01=mysqli_query($conn,$sql01);
+                            $numads=mysqli_num_rows($result01);
+
+                            $sql02="SELECT * FROM websites WHERE ownerId='$userId'";
+                            $result02=mysqli_query($conn,$sql02);
+                            $numwbs=mysqli_num_rows($result02);
+
+                            ?>
+                            <hr>
+                            <div class="row" style="margin-top:5px">
+                                <p style="width:100%;margin-left:50px">EMAIL: <b><?php echo $row00['email']; ?></b></p>
+                            </div>
+                            <div class="row" style="margin-top:5px">
+                                <p style="width:100%;margin-left:50px">Total Ads Posted: <b><?php echo $numads; ?></b></p>
+                            </div>
+                            <div class="row" style="margin-top:5px">
+                                <p style="width:100%;margin-left:50px">Total Websites Owned: <b><?php echo $numwbs; ?></b></p>
+                            </div>
                         </div>
 					</div>
 				</div>
@@ -308,12 +335,12 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
                             <li class="nav-item" style="width:33%">
                                 <a class="nav-link active" href="#MyAds" role="tab" data-toggle="tab">My Ads</a>
                             </li>
-                            <li class="nav-item" style="width:33%">
+                            <!-- <li class="nav-item" style="width:33%">
                                 <a class="nav-link" href="#Favourites" role="tab" data-toggle="tab">Favourites</a>
                             </li>
                             <li class="nav-item" style="width:33%">
                                 <a class="nav-link" href="#references" role="tab" data-toggle="tab">Settings</a>
-                            </li>
+                            </li> -->
                         </ul>
                         
                         <div class="tab-content">

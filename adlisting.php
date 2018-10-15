@@ -214,9 +214,9 @@ $ad_Id=$_GET['ad_Id'];
 		</div>
 		<a href="logout.php" class="nav-item nav-link" style="color:white">Log Out</a>
 		<div class="header-right">
-			<a href="advertise.php" class="header-notif-icon">
+			<!-- <a href="advertise.php" class="header-notif-icon">
 				<i style="font-size:30px;color:white" class="far fa-bell"></i>
-			</a>
+			</a> -->
 			<a href="advertise.php" class="header-ad-icon">
 				<i style="font-size:30px;color:white" class="fas fa-upload"></i>
 			</a>
@@ -255,10 +255,15 @@ $ad_Id=$_GET['ad_Id'];
 	$row1=mysqli_fetch_assoc($result1);
 
 	$websiteType=$row1['websiteType'];
+	$ownerId=$row1['ownerId'];
 
 	$sql2="SELECT * FROM website_type WHERE wtid='$websiteType'";
 	$result2=mysqli_query($conn,$sql2);
 	$row2=mysqli_fetch_assoc($result2);
+
+	$sql3="SELECT * FROM users WHERE uid='$ownerId'";
+	$result3=mysqli_query($conn,$sql3);
+	$row3=mysqli_fetch_assoc($result3);
 
 	?>
 
@@ -329,10 +334,32 @@ $ad_Id=$_GET['ad_Id'];
 				<p class="website-category">Page Views Total: <span style="color:black"><?php echo $row1['pageviews']; ?></span></p>
 				<p class="website-category">Page Views Last Month: <span style="color:black"><?php echo $row1['pg_lastmonth']; ?></span></p>
 				<p class="website-category">Cost: <span style="color:black">$<?php echo $row['cost']; ?> / Day</span></p>
-				<div style="width:410px;margin:0 auto;display:block" id="adlist-action-div">
-					<button class="get-contacts-link" style="display:inline">Add to Favourites</button>
-					<button class="get-contacts-link" style="display:inline">Contact Website Owner</button>
-				</div>				
+				<div style="width:210px;margin:0 auto;display:block" id="adlist-action-div">
+					<!-- <button class="get-contacts-link" style="display:inline">Add to Favourites</button> -->
+					<button class="get-contacts-link" data-toggle="modal" data-target="#myModal">Contact Website Owner</button>
+				</div>	
+
+  				<!-- Modal -->
+  				<div class="modal fade" id="myModal" role="dialog">
+	    			<div class="modal-dialog">
+	    
+			      		<!-- Modal content-->
+				      	<div class="modal-content">
+					        <div class="modal-header">					          	
+					          	<h4 class="modal-title"><?php echo $row3['username']; ?></h4>
+					          	<button type="button" class="close" data-dismiss="modal">&times;</button>
+					        </div>
+					        <div class="modal-body">
+					          	<p>EMAIL: (<?php echo $row3['email']; ?>)  <a href="mailto:<?php echo $row3['email']; ?>?Subject=Rent%20Ad%20Space" target="_top">Send Mail</a></p>
+					        </div>
+					        <div class="modal-footer">
+					          	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        </div>
+				      	</div>
+			      
+			    	</div>
+		  		</div>
+
 			</div>
 		</div>
 	</div>

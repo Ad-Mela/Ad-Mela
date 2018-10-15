@@ -186,9 +186,9 @@ include 'dbh.php';
 				if(isset($_SESSION['id']))
 				{
 					?>
-					<a href="advertise.php" class="header-notif-icon">
+					<!-- <a href="advertise.php" class="header-notif-icon">
 						<i style="font-size:30px;color:white" class="far fa-bell"></i>
-					</a>
+					</a> -->
 					<a href="advertise.php" class="header-ad-icon">
 						<i style="font-size:30px;color:white" class="fas fa-upload"></i>
 					</a>
@@ -299,7 +299,7 @@ include 'dbh.php';
 
 				?>	
 
-
+				<br>
 			</div>
 		</div>
 	</div>	
