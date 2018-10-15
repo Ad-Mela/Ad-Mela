@@ -282,8 +282,8 @@ include 'dbh.php';
 					?>
 						<div class="col-md-4">
 							<a href="adlisting.php?ad_Id=<?php echo $row['aid']; ?>">
-								<div class="category-box" style="background-image: url('<?php echo $row["imgdst1"]; ?>')">
-									<p><?php echo $row1['websiteName']; ?></p>
+								<div class="category-box" style="background-image: url('<?php echo $row["imgdst1"]; ?>');background-size: 100% 100%;">
+									<p style="font-size:20px"><?php echo $row1['websiteName']; ?></p>
 								</div>
 							</a>
 						</div>
