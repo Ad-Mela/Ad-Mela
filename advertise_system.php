@@ -68,7 +68,7 @@ $sql000="UPDATE ad_type SET totalWebsites=totalWebsites+1 WHERE tid='$tid'";
 $result000=mysqli_query($conn,$sql000);
 
 // insert into ads table
-$sql="INSERT INTO ads (websiteId, websiteOwnerId, width, height, type, status, cost, favourites) VALUES ('$website_Id','$userId','$width','$height','$tid',0,'$cost',0)";
+$sql="INSERT INTO ads (websiteId, websiteOwnerId, websiteType, width, height, type, status, cost, favourites) VALUES ('$website_Id','$userId','$wtid','$width','$height','$tid',0,'$cost',0)";
 $result=mysqli_query($conn,$sql);
 
 $ad_Id = $conn->insert_id;	

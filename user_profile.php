@@ -267,7 +267,7 @@ $userId=mysqli_real_escape_string($conn,$_SESSION['id']);
         </button>
         <div class="collapse navbar-collapse header-boy" id="navbarNavAltMarkup" style="">
             <div class="navbar-nav" style="float:left">
-                <a class="nav-item nav-link " href="categories.php">Categories <!-- <span class="sr-only">(current)</span> --></a>
+                <a class="nav-item nav-link " href="categorypage.php">Categories <!-- <span class="sr-only">(current)</span> --></a>
                 <!-- <a class="nav-item nav-link" href="#"></a>
                 <a class="nav-item nav-link" href="#">Pricing</a> -->
             </div>

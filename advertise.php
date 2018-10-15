@@ -350,7 +350,7 @@ function preview_image3(event)
     </button>
     <div class="collapse navbar-collapse header-boy" id="navbarNavAltMarkup">
         <div class="navbar-nav" style="float:left">
-            <a class="nav-item nav-link " href="categories.php">Categories <!-- <span class="sr-only">(current)</span> --></a>
+            <a class="nav-item nav-link " href="categorypage.php">Categories <!-- <span class="sr-only">(current)</span> --></a>
             <!-- <a class="nav-item nav-link" href="#"></a>-->
             <a class="nav-item nav-link" href="logout.php">Log Out</a> 
         </div>

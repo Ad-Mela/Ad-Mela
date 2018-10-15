@@ -18,7 +18,10 @@ include 'dbh.php';
    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
     <script src="general.js"></script>
+
 
 	<style type="text/css">
 	@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);
@@ -29,11 +32,7 @@ include 'dbh.php';
 		font-family: 'Open Sans', sans-serif;
 	}
 
-	.header-right {
-        /*float: right;*/
-        position:absolute;
-        right:40px;
-    }
+	
 
     .header-up-dp{
         width:40px;
@@ -121,6 +120,11 @@ include 'dbh.php';
 			color:white;	
 			border-radius:5px;					
 		}	
+		.header-right {
+	        /*float: right;*/
+	        position:absolute;
+	        right:40px;
+	    }
 	}
 	@media only screen and (min-width: 300px) {
 	    .left-nav{
@@ -163,7 +167,7 @@ include 'dbh.php';
 		</button>
 		<div class="collapse navbar-collapse header-boy" id="navbarNavAltMarkup" style="">
 			<div class="navbar-nav" style="float:left">
-				<a class="nav-item nav-link " href="categories.php">Categories <!-- <span class="sr-only">(current)</span> --></a>
+				<a class="nav-item nav-link " href="categorypage.php">Categories <!-- <span class="sr-only">(current)</span> --></a>
 				<!-- <a class="nav-item nav-link" href="#"></a>
 				<a class="nav-item nav-link" href="#">Pricing</a> -->
 			
@@ -219,44 +223,44 @@ include 'dbh.php';
 					<!-- <p style="font-size:20px;text-align:center">Filters</p> -->
 					<hr>
 					<p style="font-size:15px;text-align:center">Website Type</p>
-					<select class="form-control" name="wbtype">
-						<option value="All" >All</option>
-						<option value="Social" >Social</option>
-						<option value="Educational" >Educational</option>
-						<option value="Utility" >Utility</option>
-						<option value="Community" >Community</option>
-						<option value="News" >News</option>
-						<option value="Gaming" >Gaming</option>
+					<select id="wbtype" class="form-control" name="wbtype" onchange="webtype(this);">
+						<option value="0" >All</option>
+						<option value="1" >Social</option>
+						<option value="2" >Educational</option>
+						<option value="3" >Entertainment</option>
+						<option value="4" >Utility</option>
+						<option value="5" >Community</option>
+						<option value="6" >News</option>
+						<option value="7" >Gaming</option>
 					</select>
 					<hr>
 					<p style="font-size:15px;text-align:center">Ad Type</p>
-					<select class="form-control" name="adtype">
-						<option value="All" >All</option>
-						<option value="Banner" >Banner</option>
-						<option value="Pop-Up" >Pop-Up</option>
-						<option value="Video" >Video</option>
-						<option value="Referral Link" >Referral Link</option>
+					<select id="adtype" class="form-control" name="adtype" onchange="adtypee(this);">
+						<option value="0" >All</option>
+						<option value="1" >Banner</option>
+						<option value="2" >Pop-Up</option>
+						<option value="3" >Video</option>
+						<option value="4" >Referral Link</option>
 					</select>
 					<hr>
-					<p style="font-size:15px">Height (in px)</p>
-					<input type="range" name="height" min="0" max="1024" value="0">
+					<p style="font-size:15px">Height (height><span id="heightspan">0</span>px)</p>
+					<input type="range" id="height" name="height" min="0" max="1024" style="width:90%" value="0" onchange="hei(this);">
 					<hr>
-					<p style="font-size:15px">Width (in px)</p>
-					<input type="range" name="width" min="0" max="1024" value="0">
+					<p style="font-size:15px">Width (width><span id="widthspan">0</span>px)</p>
+					<input type="range" id="width" name="width" min="0" max="1024" style="width:90%" value="0" onchange="wid(this);">
 					<hr>
-					<p style="font-size:15px">Cost (in $ / day)</p>
-					<input type="range" name="cost" min="1" max="1000000" value="0">
+					<p style="font-size:15px">Cost (cost>$<span id="costspan">0</span>)</p>
+					<input type="range" id="cost" name="cost" min="1" max="1000" style="width:90%" value="0" onchange="cst(this);">
 					<hr>
 				</div>
 				
 			</div>
-
 			<div class="col-md-10 categories-div" id="categories-div" style="margin-top:10px">
 				<?php
 
-				$userId=$_SESSION['id'];
+				// $userId=$_SESSION['id'];
 
-				$sql="SELECT * FROM ads";
+				$sql="SELECT * FROM ads ORDER BY aid DESC";
 				$result=mysqli_query($conn,$sql);				
 
 				$count=1;
@@ -278,9 +282,9 @@ include 'dbh.php';
 					?>
 						<div class="col-md-4">
 							<a href="adlisting.php?ad_Id=<?php echo $row['aid']; ?>">
-							<div class="category-box" style="background-image: url('<?php echo $row["imgdst1"]; ?>')">
-								<p><?php echo $row1['websiteName']; ?></p>
-							</div>
+								<div class="category-box" style="background-image: url('<?php echo $row["imgdst1"]; ?>')">
+									<p><?php echo $row1['websiteName']; ?></p>
+								</div>
 							</a>
 						</div>
 					<?php	
