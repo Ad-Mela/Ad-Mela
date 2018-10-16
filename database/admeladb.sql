@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 14, 2018 at 10:04 PM
+-- Generation Time: Oct 16, 2018 at 09:46 AM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 7.0.9
 
@@ -30,6 +30,7 @@ CREATE TABLE `ads` (
   `aid` int(11) NOT NULL,
   `websiteId` int(11) NOT NULL,
   `websiteOwnerId` int(11) NOT NULL,
+  `websiteType` int(11) NOT NULL,
   `width` int(11) NOT NULL,
   `height` int(11) NOT NULL,
   `type` int(11) NOT NULL,
@@ -45,9 +46,12 @@ CREATE TABLE `ads` (
 -- Dumping data for table `ads`
 --
 
-INSERT INTO `ads` (`aid`, `websiteId`, `websiteOwnerId`, `width`, `height`, `type`, `status`, `cost`, `favourites`, `imgdst1`, `imgdst2`, `imgdst3`) VALUES
-(1, 1, 9, 500, 500, 1, 0, 5, 0, 'ads/1_1.jpg', 'ads/1_2.jpg', 'ads/1_3.jpg'),
-(2, 2, 9, 600, 500, 3, 0, 100, 0, 'ads/2_1.jpg', 'ads/2_2.jpg', 'ads/2_3.jpg');
+INSERT INTO `ads` (`aid`, `websiteId`, `websiteOwnerId`, `websiteType`, `width`, `height`, `type`, `status`, `cost`, `favourites`, `imgdst1`, `imgdst2`, `imgdst3`) VALUES
+(1, 1, 9, 3, 500, 500, 1, 0, 5, 0, 'ads/1_1.jpg', 'ads/1_2.jpg', 'ads/1_3.jpg'),
+(2, 2, 9, 4, 600, 500, 3, 0, 100, 0, 'ads/2_1.jpg', 'ads/2_2.jpg', 'ads/2_3.jpg'),
+(3, 3, 10, 3, 800, 800, 1, 0, 500, 0, 'ads/3_1.jpg', 'ads/3_2.png', 'ads/3_3.jpg'),
+(5, 4, 10, 7, 500, 300, 2, 0, 600, 0, 'ads/5_1.jpg', 'ads/5_2.jpg', 'ads/5_3.jpg'),
+(6, 5, 9, 6, 500, 500, 4, 0, 500, 0, 'ads/6_1.jpg', 'ads/6_2.jpg', 'ads/6_3.jpg');
 
 -- --------------------------------------------------------
 
@@ -66,10 +70,10 @@ CREATE TABLE `ad_type` (
 --
 
 INSERT INTO `ad_type` (`tid`, `adtype`, `totalWebsites`) VALUES
-(1, 'Banner', 1),
-(2, 'Pop-Up', 0),
+(1, 'Banner', 4),
+(2, 'Pop-Up', 1),
 (3, 'Video', 1),
-(4, 'Referral Link', 0);
+(4, 'Referral Link', 1);
 
 -- --------------------------------------------------------
 
@@ -109,7 +113,8 @@ INSERT INTO `users` (`uid`, `username`, `fullname`, `email`, `pwd`, `profilePicL
 (4, 'Joker6996', 'Shivam Mahajan', 'spmshivam@gmail.com', 'shivamspm', ''),
 (5, 'MSS', 'Mihir Shah', 'mihir.shah@gmail.com', 'mihirshah', ''),
 (8, 'shivamkul', 'shivam mahajan', 'shivam@gmail.com', '$2y$10$Yml89LST2G/aiw5V17FtuO.CdkAuFThXG7S66LFPoG26mqPEhOtDK', ''),
-(9, 'RDMaverick', 'Rutwij Daptardar', 'rutwij.d@somaiya.edu', '$2y$10$LuHBeLzCMY2KETtzaaU5oerUtMcc4Zg4B2nmF88ydM8lw.Ay.wF7q', 'user_dp/default.jpg');
+(9, 'RDMaverick', 'Rutwij Daptardar', 'rutwij.d@somaiya.edu', '$2y$10$LuHBeLzCMY2KETtzaaU5oerUtMcc4Zg4B2nmF88ydM8lw.Ay.wF7q', 'user_dp/9.jpg'),
+(10, 'Sharvai101', 'Sharvai Patil', 'sharvai101@gmail.com', '$2y$10$CWuEWKwogn3Yc84Uf14AbeC/IBjjxe7m3YJPfdN8kMZLsFDyKM/Qi', 'user_dp/default.jpg');
 
 -- --------------------------------------------------------
 
@@ -134,7 +139,10 @@ CREATE TABLE `websites` (
 
 INSERT INTO `websites` (`wid`, `websiteName`, `websiteDomain`, `ownerId`, `websiteType`, `websiteDescription`, `pageviews`, `pg_lastmonth`) VALUES
 (1, 'MEAGL', 'www.meagl.com', 9, 3, 'MEAGL is a website about memes', 17000, 1400),
-(2, 'Goodbooks', 'www.goodbooks.com', 9, 4, 'A second hand book store', 150000, 1500);
+(2, 'Goodbooks', 'www.goodbooks.com', 9, 4, 'A second hand book store', 150000, 1500),
+(3, 'Pinterest', 'www.pinterest.com', 10, 3, 'Good website for entertainment', 100000, 100),
+(4, 'Steam', 'www.steam.com', 10, 7, 'Online gaming platform', 1700000, 16000),
+(5, 'Reuters', 'www.reuters.com', 9, 6, 'Best news website in the world', 280000, 7090);
 
 -- --------------------------------------------------------
 
@@ -155,11 +163,11 @@ CREATE TABLE `website_type` (
 INSERT INTO `website_type` (`wtid`, `wbtype`, `totalWebsites`) VALUES
 (1, 'Social', 0),
 (2, 'Educational', 0),
-(3, 'Entertainment', 1),
+(3, 'Entertainment', 2),
 (4, 'Utility', 1),
 (5, 'Community', 0),
-(6, 'News', 0),
-(7, 'Gaming', 0);
+(6, 'News', 1),
+(7, 'Gaming', 1);
 
 --
 -- Indexes for dumped tables
@@ -216,7 +224,7 @@ ALTER TABLE `website_type`
 -- AUTO_INCREMENT for table `ads`
 --
 ALTER TABLE `ads`
-  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `ad_type`
 --
@@ -231,12 +239,12 @@ ALTER TABLE `favourites`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `websites`
 --
 ALTER TABLE `websites`
-  MODIFY `wid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `wid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `website_type`
 --
